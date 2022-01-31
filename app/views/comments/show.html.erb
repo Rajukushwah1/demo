@@ -1,0 +1,21 @@
+<h1>Comments show</h1>
+
+
+<!-- <%= @comment.body%>
+<%= link_to 'Back', posts_path(:id) %> 
+-->
+
+ <%= form_with model: @comment do |form| %>
+  
+   <ul>
+     <li>
+       <%= hidden_field_tag :post_id, @comment.id %>
+       <%= form.label :Commentshow  %><br><br>
+       <%= form.text_field :body %><br><br>
+       <%= form.submit %><br><br>
+     </li>
+   </ul>
+
+ <% end %>
+
+ <%= link_to 'Back', comments_path %>

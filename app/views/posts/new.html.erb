@@ -1,0 +1,20 @@
+<center>
+<body style="background-color:greenyellow; ">
+<h1 style="color:Tomato;"> from </h1>
+
+<%= form_with model: @post do |form| %>
+  <%= form.label :title %><br><br>
+  <%= form.text_field :title %><br><br>
+
+
+  <u><%= form.label :image %></u><br><br>
+  <%= form.file_field :image %><br><br>
+
+  <%= form.label :description %><br><br>
+  <%= form.text_area :description,size: "60x10" %><br><br>
+
+  <%= form.submit %><br><br>
+
+<% end %>
+</body></center>
+
