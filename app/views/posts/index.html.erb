@@ -1,11 +1,47 @@
+
  <center>
 	<body style="background-color:coral;">
+		
+		<h1 style="color:yellow">index</h1>
+        <%= link_to 'new post', new_post_path %><br><br>
+		
+	    
+	    <h2><u>Posts</u></h2>
+		<table class="comment-table">
+			<thead>
+			    <tr>
+			    	<th>User</th>
+				    <th>Post / Title</th>
+				    <!--  <th>Image</th> -->
+				    <th>Description</th>
+				     
+				    <th>Comments</th>
+				    <!--  <th>Action</th> -->
+			    </tr>
+			</thead>
+			<tbody>
 
-<h1 style="color:yellow">index</h1>
-<%= link_to 'new post', new_post_path %>
+	              <%@posts.each do |post| %>
+				        <tr>
+                            <td>
+			                    <%= post.user&.name %><br>
+			                </td>
+			                
 
+					        <td><%= link_to post.title, post_path(post) %></td>
+					        <!-- <td><%= post.image %></td> -->
+					        <td><%= post.description %></td>
+						    <td>
+						       	<%= post.comments.map(&:body).join(', ') if post.comments.present? %>
+						    </td>
+	                    </tr>
+				    <% end %>
+		
+	            
+			</tbody>
+		</table>
 
+       
 
-
-</body>
-</center>
+    </body>
+</center> 

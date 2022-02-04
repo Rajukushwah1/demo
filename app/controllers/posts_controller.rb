@@ -2,8 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @post = Post.all 
-    #debugger
+    @posts = Post.select{|p| p if p.title.present? && p.user.present? }
   end
 
   def new
@@ -18,18 +17,11 @@ class PostsController < ApplicationController
     else
       render 'new'
     end
-    uploaded_file = params['post']['image']
-    file = File.open(Rails.root.join('app','assets', 'images', uploaded_file.original_filename), 'wb')
-    file.write(uploaded_file.read)
-    
-    @post.image = file.path
-
-   
     
   end
 
   def show
-  	@post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -54,6 +46,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :description)
+    params.require(:post).permit(:title, :description, :image, :image )
   end
 end

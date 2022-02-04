@@ -1,3 +1,11 @@
+<% if flash[:error].present? %>
+  <div class="alert alert-danger">
+    <% flash[:error].each do |error|%>
+      <%= error %>
+    <% end %>
+  </div>
+<% end %>
+
 <center>
 <body style="background-color:greenyellow; ">
 <h1 style="color:Tomato;"> from </h1>
@@ -9,6 +17,8 @@
 
   <u><%= form.label :image %></u><br><br>
   <%= form.file_field :image %><br><br>
+  <td><%image_tag @post.image if @post.image.attached? %></td>
+
 
   <%= form.label :description %><br><br>
   <%= form.text_area :description,size: "60x10" %><br><br>

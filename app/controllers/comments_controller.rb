@@ -16,11 +16,13 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.post_id = @post.id if @post.present?
     @comment.user_id = current_user.id
+   # debugger
     if @comment.save
       flash[:success] = "Comment successfully added"
       redirect_to post_path(@post)
     else
-      render 'new'
+      redirect_to post_path(@post)
+      flash[:error] = @comment.errors.full_messages
     end
   end
 

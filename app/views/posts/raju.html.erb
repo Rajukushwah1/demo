@@ -1,12 +1,46 @@
+
+
+
+posts/show.hhml.erb
+
+<!-- <div>
+    <p>
+    <strong> image </strong>
+        <% if @post.image.attached? %>
+            <%= image_tag @post.image %>
+        <% end %>
+      
+    </p>
+    </div> 
+    -->
+=================================================================
+
+User_profile/show.html
+
+<!--  <h1> Current User Post </h1>
+<%@posts.each do |post| %>
+  <div>
+    <br>Title : <%= post.title %><br>
+            Image : <%= post.image %><br>
+    Description : <%= post.description %><br>
+  </div> -->
+
+  <% post.comments.each do |comment| %>
+    Comment: <%= comment.body %><br>
+  
+  <% end %>
+
+===============================================================================
+
 <!-- <center>
 <body style="background-color:yellow; ">
 
 
 <h1> Post</h1>
 <div>
-	<h3><%= @post.title%></h3>
-	<img src="rails2.jpeg">
-	<p><%= @post.description%></p>
+  <h3><%= @post.title%></h3>
+  <img src="rails2.jpeg">
+  <p><%= @post.description%></p>
 </div>
 
 
@@ -53,5 +87,39 @@
 
 
 </body></center> 
+
+
+
+post index page 
+
+
+<center>
+  <body style="background-color:coral;">
+    <h1> Current User</h1>
+    <u>Name</u> : <%= current_user.name %><br>
+  <u>Email</u> : <%= current_user.email %><br>
+  <u>Mobile_no</u> : <%= current_user.mobile_no %><br>
+  <u>Address</u> : <%= current_user.address %><br>
+  
+  <h1> Current User Post </h1>
+<%@posts.each do |post| %>
+  <div>
+    <br>Title : <%= post.title %><br>
+            Image : <%= post.image %><br>
+    Description : <%= post.description %><br>
+  </div>
+  <% post.comments.each do |comment| %>
+    Comment: <%= comment.body %><br>
+  <% end %>
+<% end %>
+
+<h1 style="color:yellow">index</h1>
+<%= link_to 'new post', new_post_path %>
+
+
+
+
+</body>
+</center>
 
  -->
