@@ -20,6 +20,36 @@
 
  <!-- <img src="rails2.jpg"> --> 
   <h3><u>Descripation</u></h3><p><%= @post.description%></p><br>
+
+ <h3>
+  <%= @post.likes.count %> Likes
+
+  <% like = current_user.likes.find_by(post: @post) %>
+  <% if like.nil? %>
+
+  <%=  button_to "Like", likes_path, params: { like: { post_id: @post.id } }, method: :post %>
+
+    <!-- <from action="/likes" method="post">
+
+       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+        <input type="hidden" name="like[post_id]" value="<%= @post.id %>">
+        <input type="submit" value="Like">
+    </from> -->
+   <% else %>
+
+     <%=  button_to "Unlike", like_path(like), method: :delete %>
+
+    <!-- <from action="<%= like_path(like) %>" method="post">
+
+       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Unlike">
+    </from> -->   
+  
+   <% end %>
+ </h3> 
 </div>
 
 <h2><u>Comments</u></h2>

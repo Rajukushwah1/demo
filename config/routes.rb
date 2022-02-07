@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/home", to: "home#index"
   resources :posts 
   resources :comments
+  resources :likes, only: [:create, :destroy]
+  
   #delete "/comments/:id", to: "comments#destroy"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :user_profile

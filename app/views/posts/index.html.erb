@@ -34,6 +34,17 @@
 						    <td>
 						       	<%= post.comments.map(&:body).join(', ') if post.comments.present? %>
 						    </td>
+						    <!-- <td> 
+
+                                <from action="/likes" method="post">
+
+                                  <input type="hidden" name="authenticity_token" value="<%#= form_authenticity_token %>">
+
+                                <input type="hidden" name="like[post_id]" value="<%#= @post.id %>">
+                                <input type="submit" value="Like">
+                                </from>
+
+						    </td> -->
 	                    </tr>
 				    <% end %>
 		

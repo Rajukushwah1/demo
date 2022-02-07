@@ -17,5 +17,7 @@ class User < ApplicationRecord
               :numericality => true,
               :length => { :minimum => 10, :maximum => 12 }
 
-    has_many :posts          
+    has_many :posts  
+    has_many :comments
+    has_many :likes         
 end
