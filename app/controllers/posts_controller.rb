@@ -1,8 +1,22 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
+  authorize_resource
+
+  def index 
+
+    # puts"========"
+
+    # puts can? :edit, Post 
+
+    # puts"========"
+
     @posts = Post.select{|p| p if p.title.present? && p.user.present? }
+  end
+
+  def me
+    @posts = current_user.posts
+    render :index
   end
 
   def new
@@ -10,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
     @post.user_id = current_user.id
     if @post.save
       redirect_to @post

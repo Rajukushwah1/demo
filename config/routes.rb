@@ -5,7 +5,17 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get "/home", to: "home#index"
-  resources :posts 
+
+  resources :posts do 
+
+    collection do
+
+       get 'me'
+
+    end
+    
+  end 
+
   resources :comments
   resources :likes, only: [:create, :destroy]
   

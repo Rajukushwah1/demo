@@ -65,3 +65,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #image gem
 gem "image_processing", ">= 1.2"
+
+#cancancan gem
+gem 'cancancan'
