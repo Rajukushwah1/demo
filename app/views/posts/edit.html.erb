@@ -1,47 +1,39 @@
-<h1> Edit From </h1>
 
-<!-- <h1>Edit Book Information</h1>
- 
-<%= render 'form' %>
- 
-<%= link_to 'Back', posts_path %> -->
+<center>
+<body style="background-color:greenyellow; ">
+<h1 style="color:Tomato;"> from </h1>
 
-<h1>Edit Post Information</h1>
- 
-<%= form_with(model: @post, local: true) do |form| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@post.errors.count, "error") %> prohibited
-        this posts from being saved:
-      </h2>
-      <ul>
-        <% @post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
- 
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
- 
-  <p>
-    <%= form.label :image %><br>
-    <%= form.file_field :image %>
-  </p>
+<%= form_with model: @post do |form| %>
 
-   <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
-  </p>
+ <% if @post.errors %>
+   <h2>Errors:</h2>
 
-  <p>
-    <%= form.submit %>
-  </p>
+    <ul>
+          <% @post.errors.full_messages.each do |message| %>
+             <li><%= message %></li>
+          <% end %>
+    </ul>
+
+ <% end %>
+
+  <%= form.label :title %><br><br>
+  <%= form.text_field :title %><br><br>
+
+  <u><%= form.label :image %></u><br><br>
+  <%= form.file_field :image %><br><br>
+  <td><%image_tag @post.image if @post.image.attached? %></td>
+
+
+  
+  
+  <%= form.label :description %><br><br>
+  <%= form.text_area :description,size: "60x10" %><br><br>
+
+  <%= form.submit %><br><br>
+
 
 <% end %>
- 
-<%= link_to 'Back', posts_path %>
+</body></center>
+
+
+  

@@ -5,12 +5,6 @@ class PostsController < ApplicationController
 
   def index 
 
-    # puts"========"
-
-    # puts can? :edit, Post 
-
-    # puts"========"
-
     @posts = Post.select{|p| p if p.title.present? && p.user.present? }
   end
 
@@ -36,15 +30,22 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
+
   end
 
   def edit
+    @post = Post.find(params[:id])
 
+    if @post.user_id != current_user.id
+      redirect_to posts_path
+    end
+    
   end
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(posts_params)
+    if @post.update(post_params)
       redirect_to @post
     else
       render 'edit'
@@ -52,9 +53,10 @@ class PostsController < ApplicationController
   end
  
   def destroy
-     @post = Post.find(params[:id])
+    
+    @post = Post.find(params[:id])
      @post.destroy
-    redirect_to post_path
+     redirect_to post_path
   end
 
   private

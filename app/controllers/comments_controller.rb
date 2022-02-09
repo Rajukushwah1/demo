@@ -28,10 +28,16 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
+    if @comment.user_id != current_user.id
+      redirect_to @comment.post
+    end
     
   end
   def edit
     @comment = Comment.find(params[:id])
+    if @comment.user_id != current_user.id
+      redirect_to @comment.post
+    end
   end
 
   def update
@@ -53,6 +59,11 @@ class CommentsController < ApplicationController
      @post = Post.find_by(id: @comment.post_id)
      @comment.destroy
      redirect_to post_path(@post)
+
+     if @comment.user_id != current_user.id
+      redirect_to @comment.post
+     end
+    
   end
 
 
