@@ -2,7 +2,8 @@ class Post < ApplicationRecord
 	has_many :comments, dependent: :destroy
 	belongs_to :user
 	has_many :likes
-	has_one_attached :image   
+	has_one_attached :image 
+	  
 	#add image to post image_attachment
 
     #attr_accessor :title, :image, :description
@@ -10,7 +11,7 @@ class Post < ApplicationRecord
     
 	validates :title,
      presence: true,
-     length: { maximum: 20 }
+     length: { maximum: 25 }
 
     validates :description, presence: true 
     validates :image, presence: true
