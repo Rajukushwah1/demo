@@ -6,7 +6,7 @@
 
 
 
-<h1><u> Current User Post </u></h1>
+<h1><u> User Post </u></h1>
 <div>
 
  <h3><u> Title</u></h3><%= @post.title%><br>
@@ -25,12 +25,12 @@
   <% like = current_user.likes.find_by(post: @post) %>
   <% if like.nil? %>
 
-  <%=  button_to "Like", likes_path, params: { like: { post_id: @post.id } }, method: :post %>
+      <%=  button_to "Like", likes_path, params: { like: { post_id: @post.id } }, method: :post %>
 
     
    <% else %>
 
-     <%=  button_to "Unlike", like_path(like), method: :delete %>  
+      <%=  button_to "Unlike", like_path(like), method: :delete %>  
   
    <% end %>
  </h3> 
