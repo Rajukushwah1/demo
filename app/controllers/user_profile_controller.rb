@@ -1,4 +1,14 @@
 class UserProfileController < ApplicationController
+  
+  def index
+    
+  end
+
+  def new
+    
+  end
+
+
   def show
     @posts = Post.where(user_id:current_user.id)
   end
@@ -16,6 +26,6 @@ class UserProfileController < ApplicationController
 
   private
     def user_params
-        params.require(:user).permit(:email, :name, :image, :image )    
+        params.require(:user).permit(:email, :name, :image )    
     end
 end

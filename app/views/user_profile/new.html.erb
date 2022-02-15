@@ -1,0 +1,24 @@
+<%= link_to 'index pag', user_profile_index_path %><br><br>
+		
+ <h2><u>Users Name</u></h2>
+
+ 
+ <% User.all.each do |user| %>
+	  <%= user.name %><br>
+	  
+	  <% if request %>
+
+	       <%= button_to " send request", friendshipes_path %>
+
+	    
+	   <% else %>
+
+	       <%= button_to "remove request", friendshipes_path %>  
+	  
+	   <% end %>
+
+ <% end %>
+
+ <!-- , like_path(like), method: :delete -->
+
+	<!-- , likes_path, params: { like: { post_id: @post.id } }, method: :post -->	
