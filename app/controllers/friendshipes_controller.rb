@@ -1,45 +1,45 @@
 class FriendshipesController < ApplicationController
 
 
-  def index
-   
-  end
+      def index
+       @friendship = Friendship.all
+      end
 
-  def new
-    
-  end
+      def new
+        @friendship = Friendship.new
+      end
 
-  def create
-    @post = Post.find_by(id: params['post_id'])
-    @comment = Comment.new(comment_params)
-    
-   
-  end
+      def create
+        @friendship = Friendship.new
+        @friendship.sender_id = params[:sender_id]
+        @friendship.receiver_id = params[:receiver_id]
+        @friendship.confirmation = false
+       if @friendship.save
+         redirect_to user_profile_path(current_user) 
+       else
+        render :new
+       end
+      end
 
-  def show
-   
-    
-  end
-  def edit
-   
-  end
+      def show
+       
+        
+      end
+      def edit
+       
+      end
 
-  def update
-      
-  end
- 
-  def destroy
-    
-    
-  end
+      def update
+          
+      end
+     
+      def destroy
+        
+        
+      end 
 
+end
 
-
-  private
-
-  def comment_params
-    params.require(:request).permit(:sender_id, :receiver_id)
-  end
 
  #  def index
  #     if current_user
@@ -80,4 +80,3 @@ class FriendshipesController < ApplicationController
  #    end
 
 
-end

@@ -1,3 +1,5 @@
+
+
 <%= link_to 'index pag', user_profile_index_path %><br><br>
 		
  <h2><u>Users Name</u></h2>
@@ -5,10 +7,14 @@
  
  <% User.all.each do |user| %>
 	  <%= user.name %><br>
-	  
+	  <%= user.id %><br>
+ 
+     <!-- <% like = current_user.likes.find_by(post: @post) %> -->
+
+     
 	  <% if request %>
 
-	       <%= button_to " send request", friendshipes_path %>
+	       <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id) %>
 
 	    
 	   <% else %>
