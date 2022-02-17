@@ -21,6 +21,6 @@ class User < ApplicationRecord
     has_many :comments
     has_many :likes   
 
-    has_many :friendshipes
-    has_many :friends, :through => :friendshipes      
+    # has_many :friendshipes
+    # has_many :friends, :through => :friendshipes      
 end

@@ -6,7 +6,7 @@
     <%= form_with model: @post do |form| %>
 
        <% if @post.errors %>
-         <h2>errors:</h2>
+         <h1>errors:</h1>
 
           <ul>
                 <% @post.errors.full_messages.each do |message| %>

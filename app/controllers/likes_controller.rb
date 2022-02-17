@@ -1,3 +1,4 @@
+
 class LikesController < ApplicationController
 
 	def create

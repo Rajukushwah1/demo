@@ -1,3 +1,4 @@
+
 class CommentsController < ApplicationController
 	
   # before_action :find_comment, only: [:destroy, :edit, :update]

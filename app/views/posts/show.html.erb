@@ -3,8 +3,20 @@
 <center>
 <body style="background-color:yellow; ">
 
+<!--   <%#= @post.likes.count %> Likes
 
+<% like = current_user.likes.find_by(post: @post) %>
+<% if like.nil? %>
 
+      <%#=  button_to "Like", likes_path, params: { like: { post_id: @post.id } }, method: :post %>
+
+    
+   <% else %>
+
+      <%#=  button_to "Unlike", like_path(like), method: :delete %>  
+  
+   <% end %>
+ -->
    
 <h1><u> User Post </u></h1>
 <div>
@@ -22,8 +34,8 @@
  <h3>
   <%= @post.likes.count %> Likes
 
-  <% like = current_user.likes.find_by(post: @post) %>
-  <% if like.nil? %>
+ <% req = current_user.likes.find_by(post: @post) %> 
+  <% if req.nil? %>
 
       <%=  button_to "Like", likes_path, params: { like: { post_id: @post.id } }, method: :post %>
 

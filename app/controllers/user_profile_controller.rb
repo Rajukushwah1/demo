@@ -1,3 +1,4 @@
+
 class UserProfileController < ApplicationController
   
   def index
