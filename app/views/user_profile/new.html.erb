@@ -2,26 +2,23 @@
 		
  <h2><u>Users Name</u></h2>
 
+ 
  <% User.all.each do |user| %>
 	  <%= user.name %><br>
 	  <%= user.id %><br>
 
-<% req = current_user.likes.find_by(post: @post) %> 
-
-	  <% request# = current_user %> 
+	
 	  <% if request %>
 
-	       <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id) %>
+	       <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: true) %>
 
 	    
 	   <% else %>
 
-	       <%= button_to "remove request", friendshipes_path, method: :delete %>  
+	       <%= button_to "remove request", friendshipes_path, method: delete %>  
 	  
 	   <% end %>
 
  <% end %>
 
- <!-- , like_path(like), method: :delete -->
-
-	<!-- , likes_path, params: { like: { post_id: @post.id } }, method: :post -->	
+ 

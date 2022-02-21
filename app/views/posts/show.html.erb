@@ -33,7 +33,7 @@
 
  <h3>
   <%= @post.likes.count %> Likes
-
+   
  <% req = current_user.likes.find_by(post: @post) %> 
   <% if req.nil? %>
 

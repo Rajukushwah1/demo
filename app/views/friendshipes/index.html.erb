@@ -1,5 +1,8 @@
-<h1>Friendshipes#index</h1>
-<p>Find me in app/views/friendshipes/index.html.erb</p>
- 
-       
+
+<h1> Friend request page </h1>
      <%= link_to 'new post', new_post_path %><br><br>
+
+<% @friendship.each do |friend| %>
+    friendship id  => <%= friend.id %><br>
+    
+<% end %>

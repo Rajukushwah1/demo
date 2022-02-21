@@ -20,7 +20,8 @@ class User < ApplicationRecord
 
     has_many :posts  
     has_many :comments
-    has_many :likes   
+    has_many :likes
+   # has_many :friends, class_name: "Friendship"
 
     # has_many :friendshipes
     # has_many :friends, :through => :friendshipes      
