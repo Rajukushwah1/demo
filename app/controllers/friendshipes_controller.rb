@@ -13,9 +13,9 @@ class FriendshipesController < ApplicationController
         @friendship = Friendship.new
         @friendship.sender_id = params[:sender_id]
         @friendship.receiver_id = params[:receiver_id]
-        @friendship.confirmation = false
+        @friendship.confirmation = params[:confirmation]
        if @friendship.save
-         redirect_to user_profile_path(current_user) 
+         redirect_to new_user_profile_path
        else
         render :new
        end
@@ -33,51 +33,10 @@ class FriendshipesController < ApplicationController
       end
      
       def destroy
-      @friendship = current_user.friendshipes.find(params[:id])
-      user_id = @friendship.user_id
+      @friendship = Friendship.find_by(id: params[:id])
       @friendship.destroy
-      redirect_to user_profile_path(current_user) 
+      redirect_to new_user_profile_path
       end 
 
 end
-
-
- #  def index
- #     if current_user
- #      @post = Post.all
- #        render(@post)
- #       else
- #      @post = Post.all.where(user_id:current_user.id)
- #    end
- #  end
-
-
- # def new
-
- # end
-
- #  def self.request(user, friend)
- #    unless user == friend or Friendship.exists?(user, friend)
- #      transaction do
- #        create(:user => user, :friend => friend, :status => 'pending')
- #        create(:user => friend, :friend => user, :status => 'requested')
- #      end
- #    end
- #  end
-
- #    def self.accept(user, friend)
- #      transaction do
- #        accepted_at = Time.now
- #        accept_one_side(user, friend, accepted_at)
- #        accept_one_side(friend, user, accepted_at)
- #      end
- #    end
-
- #    def self.accept_one_side(user, friend, accepted_at)
- #      request = find_by_user_id_and_friend_id(user, friend)
- #      request.status = 'accepted'
- #      request.accepted_at = accepted_at
- #      request.save!
- #    end
-
 

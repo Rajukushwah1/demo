@@ -1,14 +1,28 @@
-<h1>index.html.erb</h1>
-<!-- 
-user_profile/new.html.erb
-<% if request %>
+<h1>Friend request aceapt</h1>
 
-	       <%#= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id) %>
+<table>
 
-	    
-	   <% else %>
+	<thead>
+			    <tr>
+			    	<th> Friend request aceapt User </th>
+				    
+			    </tr>
+	</thead>
 
-	       <%#= button_to "remove request", friendshipes_path %>  
-	  
-	   <% end %>
- -->
+			<tbody>
+
+				<td>
+					<% User.all.each do |user| %>
+						  <%= user.name %><br>
+          <% end %>
+				</td>
+
+	      <td>
+						<% Friendship.all.each do |x| %>
+							<% if x.confirmation == true %>
+							  <%= x.confirmation %><br>
+							<% end %>
+						<% end %>
+        </td>
+      </tbody>
+</table>

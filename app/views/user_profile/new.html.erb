@@ -2,23 +2,25 @@
 		
  <h2><u>Users Name</u></h2>
 
- 
+  
  <% User.all.each do |user| %>
 	  <%= user.name %><br>
 	  <%= user.id %><br>
 
-	
-	  <% if request %>
+     
+
+	  <% req = Friendship.find_by(sender_id: current_user.id, receiver_id: user.id)%>
+	  <% if req.nil? %>
+
 
 	       <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: true) %>
-
-	    
+	       	
 	   <% else %>
 
-	       <%= button_to "remove request", friendshipes_path, method: delete %>  
+	       <%= button_to "remove request", friendshipe_path(req), method: :delete %>  
 	  
 	   <% end %>
-
+ 
  <% end %>
 
  

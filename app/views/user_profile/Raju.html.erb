@@ -1,0 +1,38 @@
+<!--   <%if confirmation: false%>
+	       dhdg
+	       <%end%>
+ -->
+
+ =================================
+
+ <% Friendship.all.each do |x| %>
+<%= x.confirmation %><br>
+	
+
+
+<% end %>
+
+===============================
+
+<% Friendship.all.each do |x| %>
+	<% if x.confirmation == true %>
+	  <%= x.confirmation %><br>
+	<% end %>
+
+<% end %>
+
+====================================
+
+<% Friendship.all.each do |x| %>
+	<% if x.confirmation == true %>
+	  <%= x.confirmation %><br>
+	<% end %>
+
+	<% User.all.each do |user| %>
+	  <%= user.name %><br>
+	  <%= user.id %><br>
+	  <% end %>
+
+<% end %>
+
+===========================
