@@ -1,10 +1,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-
   load_and_authorize_resource
 
   def index 
-
     @posts = Post.select{|p| p if p.title.present? && p.user.present? }
   end
 
@@ -30,8 +28,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-
-
   end
 
   def edit
@@ -54,7 +50,7 @@ class PostsController < ApplicationController
  
   def destroy
     
-    @post = Post.find(params[:id])
+     @post = Post.find(params[:id])
      @post.destroy
      redirect_to posts_path
   end

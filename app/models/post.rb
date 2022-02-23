@@ -3,21 +3,13 @@ class Post < ApplicationRecord
 	belongs_to :user
 	has_many :likes, dependent: :destroy
 	has_one_attached :image 
-	  
-	#add image to post image_attachment
-
-    #attr_accessor :title, :image, :description
-
-    
+	      
 	validates :title,
      presence: true,
      length: { maximum: 20 }
 
     validates :description, presence: true 
     validates :image, presence: true
-   
-
- 
     validate :image_type
 
 	private

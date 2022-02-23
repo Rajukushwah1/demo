@@ -1,6 +1,4 @@
 class FriendshipesController < ApplicationController
-
-
       def index
        @friendship = Friendship.all
       end
@@ -14,11 +12,11 @@ class FriendshipesController < ApplicationController
         @friendship.sender_id = params[:sender_id]
         @friendship.receiver_id = params[:receiver_id]
         @friendship.confirmation = params[:confirmation]
-       if @friendship.save
-         redirect_to new_user_profile_path
-       else
-        render :new
-       end
+         if @friendship.save
+           redirect_to new_user_profile_path
+         else
+          render :new
+         end
       end
 
       def show 
@@ -29,7 +27,15 @@ class FriendshipesController < ApplicationController
       end
 
       def update
-          
+
+         @friendship = Friendship.find_by(id: params[:id])
+
+          if @friendship.update
+             @friendship.save
+             redirect_to @friendship
+          else
+            render 'index'
+          end
       end
      
       def destroy

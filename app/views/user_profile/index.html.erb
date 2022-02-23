@@ -1,28 +1,15 @@
 <h1>Friend request aceapt</h1>
 
-<table>
+<% Friendship.all.each do |x| %>
+	<% if x.confirmation == true %>
+	  <%= x.confirmation %><br>
+	<% end %>
 
-	<thead>
-			    <tr>
-			    	<th> Friend request aceapt User </th>
-				    
-			    </tr>
-	</thead>
+<% end %>
+<% User.all.each do |user| %>
+     <%= user.id %><br>
 
-			<tbody>
-
-				<td>
-					<% User.all.each do |user| %>
-						  <%= user.name %><br>
-          <% end %>
-				</td>
-
-	      <td>
-						<% Friendship.all.each do |x| %>
-							<% if x.confirmation == true %>
-							  <%= x.confirmation %><br>
-							<% end %>
-						<% end %>
-        </td>
-      </tbody>
-</table>
+	 <%= user.name %><br>
+	
+	         <%= button_to " accept request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id) %> 
+<% end %>

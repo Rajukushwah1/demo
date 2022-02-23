@@ -10,7 +10,6 @@
  
 <%= form_with(model: @user_profile, local: true) do |form| %>
   
- 
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
@@ -26,14 +25,11 @@
     <%= form.text_area :description %>
   </p>
 
-
   <p>
     <%= form.label :CommentEdit %><br>
     <%= form.text_field :body %>
   </p>
  
-  
-
   <p>
     <%= form.submit %>
   </p>

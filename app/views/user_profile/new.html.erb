@@ -12,13 +12,11 @@
 	  <% req = Friendship.find_by(sender_id: current_user.id, receiver_id: user.id)%>
 	  <% if req.nil? %>
 
-
-	       <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: true) %>
+	       <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: false) %>
 	       	
 	   <% else %>
 
 	       <%= button_to "remove request", friendshipe_path(req), method: :delete %>  
-	  
 	   <% end %>
  
  <% end %>

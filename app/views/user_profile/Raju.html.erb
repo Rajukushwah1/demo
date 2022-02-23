@@ -36,3 +36,58 @@
 <% end %>
 
 ===========================
+
+<h1>Friend request aceapt</h1>
+
+<table>
+
+	<thead>
+			    <tr>
+			    	<th> Friend request aceapt User </th>
+				    
+			    </tr>
+	</thead>
+
+			<tbody>
+
+				<td>
+					<% User.all.each do |user| %>
+						  <%= user.name %><br>
+          <% end %>
+				</td>
+
+	      <td>
+						<% Friendship.all.each do |x| %>
+							<% if x.confirmation == true %>
+							  <%= x.confirmation %><br>
+							<% end %>
+						<% end %>
+        </td>
+      </tbody>
+</table>
+=======================
+
+<% Friendship.all.each do |x| %>
+	<% if x.confirmation == true %>
+	  <%= x.confirmation %><br>
+	  
+	<% end %>
+<% end %>
+===================
+
+<% User.all.each do |user| %>
+     <%= user.id %><br>
+
+	 <%= user.name %><br>
+	 <% req = Friendship.find_by(confirmation: true) %>
+      <% if req.nil? %>
+	         <%= button_to " accept request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: true) %>
+	    <% else %>
+
+	         <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: false) %>
+	       	
+	  
+	   <% end %>   	
+	 
+     
+<% end %>

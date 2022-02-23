@@ -5,7 +5,7 @@ class LikesController < ApplicationController
       if !@like.save
       	flash[:notice] = @like.errors.full_messages.to_sentence
 	  end	
-    redirect_to @like.post
+         redirect_to @like.post
     end
 
 	def destroy

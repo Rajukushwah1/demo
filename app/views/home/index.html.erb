@@ -1,12 +1,10 @@
 <center>
-<body style="background-color:lightskyblue;">	
-<% name = current_user.present? ? current_user.email : 'Stranger' %>
-<h1>Welcome, <%= name %></h1>
-<%= link_to 'index post', posts_path %><br>
+	<body style="background-color:lightskyblue;">	
+		<% name = current_user.present? ? current_user.email : 'Stranger' %>
+		<h1>Welcome, <%= name %></h1>
+		<%= link_to 'index post', posts_path %><br>
 
-<%= link_to 'new post', new_post_path %>
+		<%= link_to 'new post', new_post_path %>
 
-
-
-</body>
+	</body>
 </center>

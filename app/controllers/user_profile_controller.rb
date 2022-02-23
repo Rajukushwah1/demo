@@ -1,31 +1,24 @@
-
 class UserProfileController < ApplicationController
   
   def index
-    
   end
 
-  def new
-    
+  def new 
   end
-
 
   def show
     @posts = Post.where(user_id:current_user.id)
   end
 
   def edit
-
-    @comment = Comment.find(params[:id])
-  #   @user = current_user
-  #   @updated_user = @user.update(user_params)    
+    @comment = Comment.find(params[:id])  
    end
 
    def another_user
     @user = User.find_by(id: params['id'])
    end
 
-  private
+    private
     def user_params
         params.require(:user).permit(:email, :name, :image )    
     end
