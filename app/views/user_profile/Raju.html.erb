@@ -91,3 +91,88 @@
 	 
      
 <% end %>
+===========================
+user_profile/edit.html.erb
+
+<h1> Edit From </h1>
+
+<%= render 'form' %>
+ 
+<%= link_to 'Back', posts_path %> -->
+
+
+
+<h1>Edit Post Information</h1>
+ 
+<%= form_with(model: @user_profile, local: true) do |form| %>
+  
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= form.label :image %><br>
+    <%= form.text_area :image %>
+  </p>
+
+   <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.label :CommentEdit %><br>
+    <%= form.text_field :body %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+ 
+<%= link_to 'Back', posts_path %>
+=====================
+
+<% User.all.each do |user| %>
+     <%= user.id %><br>
+
+	 <%= user.name %><br>
+	
+	         <%= button_to " accept request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: true) %> 
+<% end %>
+
+==========================
+
+<% Friendship.where(receiver_id: current_user.id).each do |x| %>
+	<% if x.confirmation == true %>
+	<%#= user.name %>
+	<%#= x.receiver_id %>
+	<%#= x.sender_id %>
+	  <%= x.confirmation %><br>
+	  
+	<% end %>
+
+<% end %>
+==================
+
+<% Friendship.where(receiver_id: current_user.id).each do |x| %>
+	
+	    <%= x.Friendship_id %><br>
+<% end %>
+
+==========================
+
+<% Friendship.all.each do |x| %>
+	
+
+	    <%= x.sender_id %><br>
+	    <%= x.sender_id %><br>
+	    
+
+
+	  
+	
+
+<% end %>

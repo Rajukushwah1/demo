@@ -23,7 +23,11 @@ class FriendshipesController < ApplicationController
         
       end
       def edit
-       
+        
+        @friendship = Friendship.find_by(id: params[:id])
+        @friendship.update(confirmation: true)
+        redirect_to user_profile_index_path
+
       end
 
       def update

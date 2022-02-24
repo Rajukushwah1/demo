@@ -1,15 +1,19 @@
-<h1>Friend request aceapt</h1>
+<h1> request button</h1>
 
-<% Friendship.all.each do |x| %>
-	<% if x.confirmation == true %>
-	  <%= x.confirmation %><br>
-	<% end %>
 
+<% Friendship.where(receiver_id: current_user.id).each do |x| %>
+	    <%= x.confirmation %><br>
+	    <%= User.find(x.sender_id).email %><br>
+
+
+
+
+        <% if User != current_user %>
+            <%= link_to "   accept request", edit_friendshipe_path(x.id) %>
+        <% end %>
+
+	    
 <% end %>
-<% User.all.each do |user| %>
-     <%= user.id %><br>
 
-	 <%= user.name %><br>
-	
-	         <%= button_to " accept request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id) %> 
-<% end %>
+
+
