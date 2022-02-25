@@ -1,5 +1,4 @@
 class UserProfileController < ApplicationController
-  
   def index
   end
 
@@ -12,14 +11,14 @@ class UserProfileController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])  
-   end
+  end
 
-   def another_user
+  def another_user
     @user = User.find_by(id: params['id'])
-   end
+  end
 
-    private
-    def user_params
-        params.require(:user).permit(:email, :name, :image )    
-    end
+  private
+  def user_params
+    params.require(:user).permit(:email, :name, :image )    
+  end
 end

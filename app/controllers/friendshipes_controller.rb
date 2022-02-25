@@ -1,52 +1,47 @@
 class FriendshipesController < ApplicationController
-      def index
-       @friendship = Friendship.all
-      end
+  def index
+    @friendship = Friendship.all
+  end
 
-      def new
-        @friendship = Friendship.new
-      end
+  def new
+    @friendship = Friendship.new
+  end
 
-      def create
-        @friendship = Friendship.new
-        @friendship.sender_id = params[:sender_id]
-        @friendship.receiver_id = params[:receiver_id]
-        @friendship.confirmation = params[:confirmation]
-         if @friendship.save
-           redirect_to new_user_profile_path
-         else
-          render :new
-         end
-      end
+  def create
+    @friendship = Friendship.new
+    @friendship.sender_id = params[:sender_id]
+    @friendship.receiver_id = params[:receiver_id]
+    @friendship.confirmation = params[:confirmation]
+    if @friendship.save
+     redirect_to new_user_profile_path
+    else
+     render :new
+    end
+  end
 
-      def show 
-        
-      end
-      def edit
-        
-        @friendship = Friendship.find_by(id: params[:id])
-        @friendship.update(confirmation: true)
-        redirect_to user_profile_index_path
+  def show      
+  end
 
-      end
+  def edit
+    @friendship = Friendship.find_by(id: params[:id])
+    @friendship.update(confirmation: true)
+    redirect_to user_profile_index_path
+  end
 
-      def update
+  def update
+   @friendship = Friendship.find_by(id: params[:id])
+   if @friendship.update
+     @friendship.save
+     redirect_to @friendship
+   else
+    render 'index'
+   end
+  end
 
-         @friendship = Friendship.find_by(id: params[:id])
-
-          if @friendship.update
-             @friendship.save
-             redirect_to @friendship
-          else
-            render 'index'
-          end
-      end
-     
-      def destroy
-      @friendship = Friendship.find_by(id: params[:id])
-      @friendship.destroy
-      redirect_to new_user_profile_path
-      end 
-
+  def destroy
+    @friendship = Friendship.find_by(id: params[:id])
+    @friendship.destroy
+    redirect_to new_user_profile_path
+  end 
 end
 

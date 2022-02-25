@@ -1,14 +1,12 @@
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
     validates :email,
-     presence: true,
-      length: { maximum: 25 },
-      format: { with: URI::MailTo::EMAIL_REGEXP }
+      presence: true,
+        length: { maximum: 25 },
+        format: { with: URI::MailTo::EMAIL_REGEXP }
     
     validates :name, presence: true  
 
@@ -21,8 +19,6 @@ class User < ApplicationRecord
     has_many :posts  
     has_many :comments
     has_many :likes
-   # has_many :friends, class_name: "Friendship"
-
     # has_many :friendshipes
     # has_many :friends, :through => :friendshipes      
 end

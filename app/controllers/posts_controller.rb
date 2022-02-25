@@ -22,8 +22,7 @@ class PostsController < ApplicationController
       redirect_to @post
     else
       render 'new'
-    end
-    
+    end   
   end
 
   def show
@@ -32,11 +31,9 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-
     if @post.user_id != current_user.id
       redirect_to posts_path
-    end
-    
+    end    
   end
 
   def update
@@ -48,15 +45,13 @@ class PostsController < ApplicationController
     end
   end
  
-  def destroy
-    
-     @post = Post.find(params[:id])
-     @post.destroy
-     redirect_to posts_path
+  def destroy  
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 
   private
-
   def post_params
     params.require(:post).permit(:title, :description, :image, :image )
   end

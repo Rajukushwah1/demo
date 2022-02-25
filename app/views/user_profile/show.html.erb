@@ -1,45 +1,38 @@
-
 <center>
 	<body style="background-color:yellow;">
 
 		<h1> Current User</h1>
-	    <u>Name</u> : <%= current_user.name %><br>
+	  <u>Name</u> : <%= current_user.name %><br>
 		<u>Email</u> : <%= current_user.email %><br>
 		<u>Mobile_no</u> : <%= current_user.mobile_no %><br>
 		<u>Address</u> : <%= current_user.address %><br>
-
-	    <h2><u>Current User Post</u></h2>
+    <h2><u>Current User Post</u></h2>
 		<table class="comment-table">
 			<thead>
-			    <tr>
-				    <th>Title</th>
-				    <!--  <th>Image</th> -->
-				    <th>Description</th>
-				     
-				    <th>Comments</th>
-				    
-			    </tr>
+			  <tr>
+				  <th>Title</th>
+				  <!--  <th>Image</th> -->
+				  <th>Description</th>   
+				  <th>Comments</th>
+			  </tr>
 			</thead>
 			<tbody>
-			    <%@posts.each do |post| %>
-			        <tr>
-				        <td><%= link_to post.title, post_path(post) %></td>
-				        <!-- <td><%= post.image %></td> -->
-				        <td><%= post.description %></td>
-					    <td>
-					       	<% post.comments.each do |comment| %>
-							   <%= comment.body %><br>
-						    <% end %>
-					    </td>
-                    </tr>
-			    <% end %>
+			  <%@posts.each do |post| %>
+			    <tr>
+				    <td><%= link_to post.title, post_path(post) %></td>
+				    <!-- <td><%= post.image %></td> -->
+				    <td><%= post.description %></td>
+					  <td>
+					   	<% post.comments.each do |comment| %>
+							  <%= comment.body %><br>
+						  <% end %>
+					  </td>
+          </tr>
+			  <% end %>
 			</tbody>
 		</table>
-
-        <h1 style="color:red;">index</h1>
-        <%= link_to 'new post', new_post_path %><br>
-        <%= link_to 'Add New Friend ', new_user_profile_path %>
-
-
-    </body>
+    <h1 style="color:red;">index</h1>
+    <%= link_to 'new post', new_post_path %><br>
+    <%= link_to 'Add New Friend ', new_user_profile_path %>
+  </body>
 </center>

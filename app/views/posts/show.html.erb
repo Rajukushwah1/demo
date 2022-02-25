@@ -71,7 +71,7 @@
           <td><%= c.body%></td>
           <td><%= link_to 'Show', comment_path(c) %> ||
             <%= link_to 'Edit', edit_comment_path(c) %> ||
-            <%= link_to 'Destroy', comment_path(c),
+            <%= link_to 'Destroy', comment_path,
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %>
           </td>

@@ -1,18 +1,9 @@
-<h1> request button</h1>
-
-
+<h1>All request Show</h1>
 <% Friendship.where(receiver_id: current_user.id).each do |x| %>
-	    <%= x.confirmation %><br>
-	    <%= User.find(x.sender_id).email %><br>
-
-
-
-
-        <% if User != current_user %>
-            <%= link_to "   accept request", edit_friendshipe_path(x.id) %>
-        <% end %>
-
-	    
+	<br> <%= x.confirmation %><br>
+	<%= User.find(x.sender_id).email %><br>
+  <%= User.find(x.sender_id).name %><br>
+  <%= link_to "accept request", edit_friendshipe_path(x.id) %><br>    
 <% end %>
 
 

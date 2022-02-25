@@ -1,7 +1,5 @@
 <h1> Friend request page </h1>
-     <%= link_to 'new post', new_post_path %><br><br>
-
+<%= link_to 'new post', new_post_path %><br><br>
 <% @friendship.each do |friend| %>
     friendship id  => <%= friend.id %><br>
-    
 <% end %>

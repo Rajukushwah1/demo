@@ -1,35 +1,24 @@
 <center>
-<body style="background-color:darkgray; ">
-<h2 style="color:Tomato;"> from </h2>
-
-
-<%= form_with model: @post do |form| %>
-
- <% if @post.errors.any? %>
-   <h2>Errors:</h2>
-      <ul>
-        <% @post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-
- <% end %>
-
-    
-  <h3><%= form.label :title %></h3>
-  <%= form.text_field :title %><br><br>
-
-
-  <h3><%= form.label :image %></h3>
-  <%= form.file_field :image %><br><br>
-  <td><%image_tag @post.image if @post.image.attached? %></td>
-
-
-  <h3><%= form.label :description %></h3>
-  <%= form.text_area :description,size: "60x10" %><br><br>
-
-  <%= form.submit %><br><br>
-
-<% end %>
-</body></center>
+  <body style="background-color:darkgray; ">
+    <h2 style="color:Tomato;"> from </h2>
+    <%= form_with model: @post do |form| %>
+      <% if @post.errors.any? %>
+        <h2>Errors:</h2>
+        <ul>
+          <% @post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>  
+      <h3><%= form.label :title %></h3>
+      <%= form.text_field :title %><br><br>
+      <h3><%= form.label :image %></h3>
+      <%= form.file_field :image %><br><br>
+      <td><%image_tag @post.image if @post.image.attached? %></td>
+      <h3><%= form.label :description %></h3>
+      <%= form.text_area :description,size: "60x10" %><br><br>
+      <%= form.submit %><br><br>
+    <% end %>
+  </body>
+</center>
 

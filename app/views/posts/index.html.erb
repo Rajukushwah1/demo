@@ -1,61 +1,36 @@
-
- <center>
+<center>
 	<body style="background-color:lightblue;">
 		
 		<h1 style="color:yellow">index</h1>
-        <%= link_to 'new post', new_post_path %><br><br>
-		
-	    
-	    <h2>Posts</h2>
+    <%= link_to 'new post', new_post_path %><br><br>   
+	  <h2>Posts</h2>
 		<table class="comment-table">
 			<thead>
 			    <tr>
 			    	<th>User</th>
 				    <th>Post / Title</th>
 				    <!--  <th>Image</th> -->
-				    <th>Description</th>
-				     
+				    <th>Description</th>		     
 				    <th>Comments</th>
-				     <th>Action</th>
-				   <!--   <th> Friend Request</th> -->
+				    <!--  <th>Action</th> -->
+				    <!--   <th> Friend Request</th> -->
 			    </tr>
 			</thead>
 			<tbody>
-
-	              <%@posts.each do |post| %>
-				        <tr>
-                       <td>
-			                    <%= post.user&.name %><br>
-			                </td>
-			                
-
-					        <td><%= link_to post.title, post_path(post) %></td>
-					        <!-- <td><%= post.image %></td> -->
-					        <td><%= post.description %></td>
-						    <td>
-						       	<%= post.comments.map(&:body).join(', ') if post.comments.present? %>
-						    </td>
-						
-                    <td><%= link_to 'Show', post_path(post) %> ||
-                        <%= link_to 'Edit', edit_post_path(post) %> ||
-                        <%= link_to 'Destroy', post_path(post),
-                         method: :delete,
-                         data: { confirm: 'Are you sure?' } %>
-                    </td>	
-
-                   <!--  <td>
-                          <%= link_to 'add_friend', post_path(post) %><br>
-                          <%= link_to 'remove', post_path(post),
-                          method: :delete, data: { confirm: 'Are you sure?' } %>
-                    </td>					     -->
-	             </tr>
-				    <% end %>
-		
-	            
+	      <%@posts.each do |post| %>
+				  <tr>
+            <td><%= post.user&.name %><br></td>
+					  <td><%= link_to post.title, post_path(post) %></td>
+					  <!-- <td><%= post.image %></td> -->
+					  <td><%= post.description %></td>
+						<td><%= post.comments.map(&:body).join(', ') if post.comments.present? %></td>
+					  <!--   <td><%= link_to 'Show', post_path(post) %> ||
+            <%= link_to 'Edit', edit_post_path(post) %> ||
+            <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>	 -->
+	        </tr>
+				<% end %>	            
 			</tbody>
 		</table>
-
-       
-
-    </body>
+  </body>
 </center> 
