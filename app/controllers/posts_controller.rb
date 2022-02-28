@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index 
-    @posts = Post.select{|p| p if p.title.present? && p.user.present? }
+    @posts = Post.order("updated_at desc")
   end
 
   def me

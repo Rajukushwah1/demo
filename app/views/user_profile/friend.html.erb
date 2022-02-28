@@ -1,0 +1,13 @@
+<center>
+  <body style="background-color:lightblue">
+<h1> Current user friend </h1>
+<% @totle_friends.each do |friend| %>
+    <% if (friend.confirmation == true) %>
+        <% user = User.find(friend.sender_id) %>
+        <%= user.id %><br>
+        <%= user.name %><br>
+        <%= user.email %><br><br>
+    <% end %>
+<% end %>
+  </body>
+</center>

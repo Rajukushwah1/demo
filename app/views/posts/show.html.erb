@@ -1,21 +1,5 @@
 <center>
-<body style="background-color:yellow; ">
-
-  <!--   <%#= @post.likes.count %> Likes
-
-  <% like = current_user.likes.find_by(post: @post) %>
-  <% if like.nil? %>
-
-        <%#=  button_to "Like", likes_path, params: { like: { post_id: @post.id } }, method: :post %>
-
-      
-     <% else %>
-
-        <%#=  button_to "Unlike", like_path(like), method: :delete %>  
-    
-     <% end %>
-   -->
-     
+<body style="background-color:yellow; ">     
   <h1><u> User Post </u></h1>
   <div>
 
@@ -24,26 +8,8 @@
     <% if @post.image.attached? %>
       <h3><u>Image</u></h3><%= image_tag @post.image, style:"width: 100px; height: 100px;" %><br>
     <% end %>
-
-
-   <!-- <img src="rails2.jpg"> --> 
     <h3><u>Descripation</u></h3><p><%= @post.description%></p><br>
-
-   <h3>
-    <%= @post.likes.count %> Likes
-     
-   <% req = current_user.likes.find_by(post: @post) %> 
-    <% if req.nil? %>
-
-        <%=  button_to "Like", likes_path, params: { like: { post_id: @post.id } }, method: :post %>
-
-      
-     <% else %>
-
-        <%=  button_to "Unlike", like_path(like), method: :delete %>  
-    
-     <% end %>
-   </h3> 
+   <h3><%= @post.likes.count %> Likes</h3> 
   </div>
 
   <% if flash[:error].present? %>
@@ -69,9 +35,9 @@
       <% @post.comments.each do |c|%>
         <tr>
           <td><%= c.body%></td>
-          <td><%= link_to 'Show', comment_path(c) %> ||
+          <td>
             <%= link_to 'Edit', edit_comment_path(c) %> ||
-            <%= link_to 'Destroy', comment_path,
+            <%= link_to 'Destroy', comment_path(c),
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %>
           </td>

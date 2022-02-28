@@ -1,11 +1,48 @@
-<center>
-	<body style="background-color:yellow;">
+<body>	
+	<div class="container">
+	  <div class="leftpane">
+	    Image teg
+	  </div>
+	  <div class="leftpane">
+		  <%= current_user.name %><br>
+			<%= current_user.email %><br>
+			<%= current_user.mobile_no %><br>
+			<%= current_user.address %><br>
+	  </div>
+	  <div class="leftpane">
+		  <%= link_to 'index post', posts_path %><br>
+	    <%= link_to '+ post', new_post_path %><br>
+	    <%= link_to 'New Friend', add_new_friend_path %><br> 
+	    <%= link_to 'Friend request', see_friend_request_path %><br>
+	    <%= link_to 'My Friend', friend_path %><br>
+	  </div>
+      <div class="bottompane">
+			<div class="row">
+			 <%@posts.each do |post| %>
 
-		<h1> Current User</h1>
-	  <u>Name</u> : <%= current_user.name %><br>
-		<u>Email</u> : <%= current_user.email %><br>
-		<u>Mobile_no</u> : <%= current_user.mobile_no %><br>
-		<u>Address</u> : <%= current_user.address %><br>
+			  <div class="card col-md-3" style="height: 400px; background-color: #b3d9ff;">
+		     <%= image_tag post&.image, class:"card-img-top", style: "height: 200px"%>
+			  <div class="card-body">
+			    <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
+				    <p class="card-text"> <%= post.description %> </p>
+				    <div style="margin-bottom: 10px;">
+			    	<%= form_with model: Comment.new do |form| %>
+			        <%= hidden_field_tag :post_id, post.id %>
+			        <%= form.text_field :body, placeholder: "Comment", style: "width: 197px; display: inline" %>
+			        <%= form.submit 'submit' %>
+            <% end %>
+			    </div>
+				  </div>
+			  </div>
+       <% end %>
+			</div>
+      </div> 
+</body>
+
+
+
+<center>
+	<body style="background-color:lightcoral;">
     <h2><u>Current User Post</u></h2>
 		<table class="comment-table">
 			<thead>
@@ -32,7 +69,13 @@
 			</tbody>
 		</table>
     <h1 style="color:red;">index</h1>
+     <%= link_to 'index post', posts_path %><br>
     <%= link_to 'new post', new_post_path %><br>
-    <%= link_to 'Add New Friend ', new_user_profile_path %>
+    <%= link_to 'Add New Friend ', add_new_friend_path %><br> 
+    <%= link_to 'See Friend request ', see_friend_request_path %><br>
+    <%= link_to ' Friend ', friend_path %><br>
   </body>
 </center>
+
+
+

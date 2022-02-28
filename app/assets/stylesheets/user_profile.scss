@@ -1,3 +1,32 @@
 // Place all the styles related to the UserProfile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+    width: available;
+    height: available;
+}
+
+.container{
+    width: available;
+    height: available;
+}
+
+.leftpane{
+    width: 33%;
+    min-width: 350px;
+    height: available;
+    min-height: 150px;
+    float: left;
+    background-color: rosybrown;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.bottompane{
+    width: available;
+    height: 100px;
+    border-collapse: collapse;
+    background-color: #4da6ff;
+
+}

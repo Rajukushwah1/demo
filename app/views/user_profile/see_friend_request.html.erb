@@ -1,0 +1,16 @@
+<center>
+  <body style="background-color:darkgray">
+<h1>All request </h1>
+<% @friends.each do |friend| %>
+  <% user = User.find(friend.sender_id) %>
+  <%= user.id %><br>
+  <%= user.name %><br>
+  <%= user.email%><br>
+
+  <%= link_to "accept request", edit_friendshipe_path(friend.id) %><br>
+<% end %>
+</body>
+</center>
+
+
+

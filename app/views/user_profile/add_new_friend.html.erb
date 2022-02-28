@@ -1,0 +1,15 @@
+<% User.all.each do |user| %>
+	<% req = Friendship.find_by(sender_id: current_user.id, receiver_id: user.id)%>
+  <% if !req.present? || req.confirmation == false %>
+	  <p>User Id : <%= user.id %></p>
+	  <p>User Name : <%= user.name %></p>
+		<% if req.nil? %>
+		  <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: false) %><br>
+		<% else %>
+		  <%= button_to "remove request", friendshipe_path(req), method: :delete %>  
+		<% end %>
+	<% end %>
+<% end %>
+
+
+ 
