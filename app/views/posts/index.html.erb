@@ -1,40 +1,42 @@
 <div>
-  <%= link_to '+ post', new_post_path %><br><br>   
+  <%= link_to '+ post', new_post_path, class:"btn btn-primary" %><br><br>   
   <div class="row">
 	  <%@posts.each do |post| %>
-	    <div class="card col-md-3" style="height: 400px; background-color: #b3d9ff;">
-	    	<h5 class="card-title"><%= post.user.name %></h5>
-		     <%= image_tag post&.image, class:"card-img-top", style: "height: 200px"%>
-			  <div class="card-body">
-			    <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
-			    <p class="card-text"><%= post.description %></p>
-			    <div style="margin-bottom: 10px;">
-			    	<%= form_with model: Comment.new do |form| %>
-			        <%= hidden_field_tag :post_id, post.id %>
-			        <%= form.text_field :body, placeholder: "Comment", style: "width: 197px; display: inline" %>
-			        <%= form.submit 'submit' %>
-            <% end %>
-			    </div>
-          <div>
-          	<div style="float: left;">
-          		<% like = current_user.likes.find_by(post: post) %> 
-					    <% if like.nil? %>
-					        <%=  link_to likes_path({ like: { post_id: post.id } }), method: :post do %>
-                    <%= image_tag "like-inactive.png", style: "height: 40px;" %>
-					        <% end %>
-					    <% else %>
-					        <%=  link_to  like_path(like), method: :delete do %>
-					        <%= image_tag "like-active.png", style: "height: 40px;" %>
-					        <% end %>
-					    <% end %>
-          	</div>
-				    <div style="float: right;">
-				    	<%= link_to 'Edit', edit_post_path(post), class:"btn btn-primary" %>
-		      		<%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
-		      	</div>
-		      </div>
-			  </div>
-			</div>
+		  <% if @friends_ids.include? post.user_id%>
+		    <div class="card col-md-3" style="height: 400px; background-color: #b3d9ff;">
+		    	<h5 class="card-title"><%= post.user.name %></h5>
+			     <%= image_tag post&.image, class:"card-img-top", style: "height: 200px"%>
+				  <div class="card-body">
+				    <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
+				    <p class="card-text"><%= post.description %></p>
+				    <div style="margin-bottom: 10px;">
+				    	<%= form_with model: Comment.new do |form| %>
+				        <%= hidden_field_tag :post_id, post.id %>
+				        <%= form.text_field :body, placeholder: "Comment", style: "width: 197px; display: inline" %>
+				        <%= form.submit 'submit' %>
+	            <% end %>
+				    </div>
+	          <div>
+	          	<div style="float: left;">
+	          		<% like = current_user.likes.find_by(post: post) %> 
+						    <% if like.nil? %>
+						        <%=  link_to likes_path({ like: { post_id: post.id } }), method: :post do %>
+	                    <%= image_tag "like-inactive.png", style: "height: 40px;" %>
+						        <% end %>
+						    <% else %>
+						        <%=  link_to  like_path(like), method: :delete do %>
+						        <%= image_tag "like-active.png", style: "height: 40px;" %>
+						        <% end %>
+						    <% end %>
+	          	</div>
+					    <div style="float: right;">
+					    	<%= link_to 'Edit', edit_post_path(post), class:"btn btn-primary" %>
+			      		<%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
+			      	</div>
+			      </div>
+				  </div>
+				</div>
+			<% end %>	
 		<% end %>
 	</div>       
 </div> 

@@ -21,9 +21,10 @@ Rails.application.routes.draw do
   get '/add_new_friend', to: "user_profile#add_new_friend"
 
   get '/friend', to: "user_profile#friend"
-
+  #get '/destroy', to: "user_profile#destroy"
   get '/see_friend_request', to: "user_profile#see_friend_request"
 
   resources :friendshipes
+
   #get 'friendship', to: "friendshipes#index"
 end

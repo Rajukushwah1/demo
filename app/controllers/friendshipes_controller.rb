@@ -41,7 +41,7 @@ class FriendshipesController < ApplicationController
   def destroy
     @friendship = Friendship.find_by(id: params[:id])
     @friendship.destroy
-    redirect_to new_user_profile_path
+    redirect_to add_new_friend_path
   end 
 end
 

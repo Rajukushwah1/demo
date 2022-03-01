@@ -3,6 +3,17 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index 
+    friends = Friendship.where(sender_id: current_user.id, confirmation: true)
+    accepted_friends = Friendship.where(receiver_id: current_user.id, confirmation: true)
+    @totle_friends = (friends + accepted_friends).uniq
+    @friends_ids = []
+    @totle_friends.each do |friend|
+     if friend.receiver_id == current_user.id
+      @friends_ids.push(friend.sender_id)
+     else
+      @friends_ids.push(friend.receiver_id) 
+     end    
+    end 
     @posts = Post.order("updated_at desc")
   end
 

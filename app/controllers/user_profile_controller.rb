@@ -1,8 +1,10 @@
 class UserProfileController < ApplicationController
   def index
+    @user_profiles = UserProfile.paginate(:page => params[:page], :per_page => 5)
   end
 
   def new 
+    
   end
 
   def show
@@ -14,7 +16,10 @@ class UserProfileController < ApplicationController
   end
 
   def destroy
-
+    @friends = Friendship.find(params[:id])
+    @friends.destroy
+    redirect_to "add_new_friend"
+    
   end  
 
   def another_user
