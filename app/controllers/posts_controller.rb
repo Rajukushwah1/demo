@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index 
+    
     friends = Friendship.where(sender_id: current_user.id, confirmation: true)
     accepted_friends = Friendship.where(receiver_id: current_user.id, confirmation: true)
     @totle_friends = (friends + accepted_friends).uniq

@@ -3,18 +3,14 @@
 <% User.all.each do |user| %>
 	<% req = Friendship.find_by(sender_id: current_user.id, receiver_id: user.id)%>
   <% if !req.present? || req.confirmation == false %>
-	  <%= user.id %>
-	  <%= user.name %></br>
-	  <%= user.email %></br>
+	  <strong style="color:#666600"><%= user.id %>
+	  <%= user.name %><br>
+	  <%= user.email %></strong>
 	  <% if req.nil? %>
-		  <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: false) %><br>
+		  <%= button_to " send request", friendshipes_path(sender_id: current_user.id, receiver_id: user.id, confirmation: false), class:"btn btn-primary" %><br>
 		<% else %>
-		  <%= button_to "remove request", friendshipe_path(req), method: :delete %>  
+		  <%= button_to "remove request", friendshipe_path(req), method: :delete, class:"btn btn-primary" %>  
 		<% end %>
 	<% end %>
 <% end %>
-
-<div class="my-3">
-    <%#= will_paginate @friendships, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
- </div>
 </div> 

@@ -1,0 +1,112 @@
+<% if flash[:error].present? %>
+  <div class="alert alert-danger">
+    <% flash[:error].each do |error|%>
+      <%= error %>
+    <% end %>
+  </div>
+<% end %>
+<body>
+  <div class="container">
+    <div class="leftpane1">
+       <h1><%= @post.title%></h1>
+    </div>
+
+    <div class="leftpane1">
+      <h1><%= @post.likes.count %> Likes</h1> 
+    </div>
+
+    <div class="bottompane1">
+      <%= image_tag @post.image, style:"width: 300px; height: 200px;" %><br>      
+    </div>  
+
+    <div class="bottompane2">
+      <%= @post.description%>
+    </div>
+
+    <div class="leftpane>
+      <h2><u>Comments</u></h2>
+      <table class="comment-table1">
+        <thead>
+          <tr>
+            <th>Comment</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post.comments.each do |c|%>
+            <tr>
+              <td><%= c.body%></td>
+              <td>
+                <%= link_to 'Edit', edit_comment_path(c) %> ||
+                <%= link_to 'Destroy', comment_path(c),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</body>   
+
+<h1>Posts</h1>
+<div>
+   <strong><u> Title</u></strong> : <%= @post.title%><br>
+    <% if @post.image.attached? %>
+  <strong><u>Image</u></strong> : <%= image_tag @post.image, style:"width: 300px; height: 200px;" %><br>
+    <% end %> 
+  <strong><u>Descripation</u></strong>  : <%= @post.description%><br>
+  <h3><%= @post.likes.count %> Likes</h3> 
+</div>
+
+<% if flash[:error].present? %>
+  <div class="alert alert-danger">
+    <% flash[:error].each do |error|%>
+      <%= error %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2><u>Comments</u></h2>
+<table class="comment-table">
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post.comments.each do |c|%>
+      <tr>
+        <td><%= c.body%></td>
+        <td>
+          <%= link_to 'Edit', edit_comment_path(c) %> ||
+          <%= link_to 'Destroy', comment_path(c),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1 style="color:#80bfff;"> Comment From  </h1>
+
+<%= form_with model: Comment.new do |form| %>
+  
+  <ul>
+    <li>
+      <%= hidden_field_tag :post_id, @post.id %>
+      <%= form.label :Comment %><br><br>
+      <%= form.text_field :body %><br><br>
+      <%= form.submit %><br><br>
+    </li>
+  </ul>
+
+<% end %>
+
+ <%= link_to 'index post', posts_path, class:"btn btn-primary" %>
+ <%= link_to 'New post', new_post_path, class:"btn btn-primary" %>

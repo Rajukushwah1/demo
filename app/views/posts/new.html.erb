@@ -15,6 +15,6 @@
   <td><%image_tag @post.image if @post.image.attached? %></td>
   <span><h3><%= form.label :description %></h3></span>
   <span><%= form.text_area :description,size: "60x10" %></span>
-  <%= form.submit 'submit' %>
+  <%= form.submit 'submit', class:"btn btn-primary" %>
 <% end %>
 

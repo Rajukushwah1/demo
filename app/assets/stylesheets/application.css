@@ -19,6 +19,6 @@
   width: 30%;
 }
 .comment-table td, .comment-table th{
-    border: 1px solid #ddd;
+    border: 2px solid #b3d9ff;
     padding: 8px;
 }

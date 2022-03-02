@@ -2,8 +2,8 @@
 <% @friends.each do |friend| %>
   <% user = User.find(friend.sender_id) %>
   <div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label"><%= user.id %><%= user.name %>
-      <%= user.email%>
+    <label for="staticEmail" class="col-sm-2 col-form-label"><strong style="color:#666600">(<%= user.id %>)<%= user.name %>
+      <%= user.email%></strong>
     </label>
     <div class="col-sm-10">
       <%= link_to "accept request", edit_friendshipe_path(friend.id),
