@@ -1,9 +1,9 @@
 <div class = "container">
-
+<%= link_to 'Back', user_profile_path(current_user), class:"btn btn-primary" %><br>
 <% User.all.each do |user| %>
 	<% req = Friendship.find_by(sender_id: current_user.id, receiver_id: user.id)%>
   <% if !req.present? || req.confirmation == false %>
-	  <strong style="color:#666600"><%= user.id %>
+	  <strong style="color:#666600">
 	  <%= user.name %><br>
 	  <%= user.email %></strong>
 	  <% if req.nil? %>

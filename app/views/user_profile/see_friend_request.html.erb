@@ -1,8 +1,8 @@
-<h1>Requests </h1>
+<h1>Requests <%= link_to 'Back', user_profile_path(current_user), class:"btn btn-primary" %></h1>
 <% @friends.each do |friend| %>
   <% user = User.find(friend.sender_id) %>
   <div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label"><strong style="color:#666600">(<%= user.id %>)<%= user.name %>
+    <label for="staticEmail" class="col-sm-2 col-form-label"><strong style="color:#666600"><%= user.name %>
       <%= user.email%></strong>
     </label>
     <div class="col-sm-10">

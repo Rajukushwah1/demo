@@ -6,9 +6,9 @@ class PostsController < ApplicationController
     
     friends = Friendship.where(sender_id: current_user.id, confirmation: true)
     accepted_friends = Friendship.where(receiver_id: current_user.id, confirmation: true)
-    @totle_friends = (friends + accepted_friends).uniq
+    @total_friends = (friends + accepted_friends).uniq
     @friends_ids = []
-    @totle_friends.each do |friend|
+    @total_friends.each do |friend|
      if friend.receiver_id == current_user.id
       @friends_ids.push(friend.sender_id)
      else

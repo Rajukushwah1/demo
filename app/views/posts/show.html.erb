@@ -4,6 +4,7 @@
       <div>
        <%= link_to 'Index post', posts_path, class:"btn btn-primary" %>
        <%= link_to 'New post', new_post_path, class:"btn btn-primary" %>
+       <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
       </div>
     </div>
 
@@ -16,24 +17,43 @@
         <h1><%= @post.likes.count %> Likes</h1> 
       </div>
     </div>
-
     
     <div style="width: 100%;">
       <div class="leftpane">
         <div class="card" style="width: 34rem;">
+          <h5 class="card-title"><%= @post.user.name %></h5>
           <%= image_tag @post.image%>
           <div class="card-body">
-            <h5 class="card-title"><%=@post.title.titleize()%></h5>
+            <h5 class="card-title"></h5>
             <p class="card-text"><%= @post.description%></p>
           </div>
+          <div>
+        <%= form_with model: Comment.new do |form| %>      
+    <ul>
+      <li>
+        <span>
+        <%= hidden_field_tag :post_id, @post.id %>
+        <%= form.text_field :body , placeholder: "Enter your Comment"%>
+      </span>
+      <span>
+        <%= form.submit 'submit', class: "btn btn-success" %><br><br>
+      </span>
+      </li>
+    </ul>
+        <% end %>
+       </div> 
         </div>
-      </div>
- 
+      </div> 
+    </div> 
+  </div>
+
+  <div >
       <div class="rightpane">
-        <center><h2>Comments</h2>
+        <h2>Comments</h2>
         <table >
           <thead>
             <tr>
+              <th>Id</th>
               <th>Comment</th>
               <th>Action</th>
             </tr>
@@ -41,6 +61,14 @@
           <tbody>
             <% @post.comments.each do |c|%>
               <tr>
+                <!-- <td>
+                  <% User.all.each do |user| %>
+                     
+                    <%= user.name %>
+                  <% end %>
+                   -->
+                </td>
+                <td><%= c.user_id %></td>
                 <td><%= c.body%></td>
                 <td>
                   <%= link_to 'Edit', edit_comment_path(c) %> ||
@@ -52,34 +80,6 @@
             <% end %>
           </tbody>
         </table>
-        <div>
-      <%= form_with model: Comment.new do |form| %>      
-        <ul>
-          <li>
-            <%= hidden_field_tag :post_id, @post.id %>
-            <%= form.label :Comment %><br>
-            <%= form.text_field :body %><br><br>
-            <%= form.submit %><br>
-          </li>
-        </ul>
-      <% end %>
-    </div> 
-        </center>
       </div>
-    </div>  
-  </div>
-  <!-- <div class= "container">
-    <div>
-      <%= form_with model: Comment.new do |form| %>      
-        <ul>
-          <li>
-            <%= hidden_field_tag :post_id, @post.id %>
-            <%= form.label :Comment %><br><br>
-            <%= form.text_field :body %><br><br>
-            <%= form.submit %><br><br>
-          </li>
-        </ul>
-      <% end %>
-    </div>  -->
-  </div>
+    </div>
 </body>  
