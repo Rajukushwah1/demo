@@ -13,7 +13,7 @@ class FriendshipesController < ApplicationController
     @friendship.receiver_id = params[:receiver_id]
     @friendship.confirmation = params[:confirmation]
     if @friendship.save
-     redirect_to new_user_profile_path
+     redirect_to see_friend_request_path
     else
      render :new
     end
@@ -43,5 +43,20 @@ class FriendshipesController < ApplicationController
     @friendship.destroy
     redirect_to add_new_friend_path
   end 
+
+  def add_new_friend
+    @friends = Friendship.all
+  end
+
+  def see_friend_request
+    @friends = Friendship.where(receiver_id: current_user.id, confirmation: false)
+  end
+
+  def friend
+    friends = Friendship.where(sender_id: current_user.id, confirmation: true)
+    accepted_friends = Friendship.where(receiver_id: current_user.id, confirmation: true)
+    @totle_friends = (friends + accepted_friends).uniq
+  end
+
 end
 

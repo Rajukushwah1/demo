@@ -1,0 +1,8 @@
+<%= link_to 'Back', user_profile_path(current_user), class:"btn btn-primary" %><br>
+<% @totle_friends.each do |friend| %>
+  <% if (friend.confirmation == true) %>
+    <strong style="color:#666600"><% user = User.find(friend.sender_id) %>
+    <%= user.name %></strong>     <%= link_to 'Destroy', friendshipe_path(friend),
+     method: :delete,data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %><br> 
+  <% end %>
+<% end %><br>

@@ -4,11 +4,14 @@ class User < ApplicationRecord
 
     validates :email,
       presence: true,
-        length: { maximum: 25 },
-        format: { with: URI::MailTo::EMAIL_REGEXP }
+      length: { maximum: 25 },
+      format: { with: URI::MailTo::EMAIL_REGEXP },
+      uniqueness: true
     
-    validates :name, presence: true  
-
+    validates :name, presence: true,  
+              :length => { minimum: 4 },
+              :uniqueness => { case_sensitive: false }
+              
     validates :address, presence: true  
   
     validates :mobile_no,:presence => true,
@@ -18,6 +21,12 @@ class User < ApplicationRecord
     has_many :posts  
     has_many :comments
     has_many :likes
-    # has_many :friendshipes
-    # has_many :friends, :through => :friendshipes      
+    #has_many :friendshipes
+    # has_many :friends, :through => :friendshipes 
+    has_one_attached :profilepic 
+
+    def my_friend
+      Post.where(user_id: @total_friend)
+    end
+             
 end

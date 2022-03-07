@@ -53,7 +53,7 @@
         <table >
           <thead>
             <tr>
-              <th>Id</th>
+              <th>Name</th>
               <th>Comment</th>
               <th>Action</th>
             </tr>
@@ -61,14 +61,7 @@
           <tbody>
             <% @post.comments.each do |c|%>
               <tr>
-                <!-- <td>
-                  <% User.all.each do |user| %>
-                     
-                    <%= user.name %>
-                  <% end %>
-                   -->
-                </td>
-                <td><%= c.user_id %></td>
+                <td><%= c.user.name %></td>
                 <td><%= c.body%></td>
                 <td>
                   <%= link_to 'Edit', edit_comment_path(c) %> ||

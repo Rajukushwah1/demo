@@ -11,10 +11,10 @@ class LikeMailer < ApplicationMailer
     @greeting = "Hi"
     attachments['rails3.png'] = File.read('app/assets/images/rails3.png')
     mail(
-     from: "rakushwah@bestpeers.com",
-     to: User.first.email,
-     cc: User.all.pluck(:email), 
-     bcc: "secret@corsego.com", 
-     subject: "New Like created")
+     # from: "rakushwah@bestpeers.com",
+      to: User.first.email,
+     # cc: User.pluck(:email), 
+     # bcc: "secret@corsego.com", 
+     message: "New Like created one")
   end
 end

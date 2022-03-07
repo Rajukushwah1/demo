@@ -1,14 +1,16 @@
 <body>	
 	<div class="container">
 	  <div class="leftpane">
-	   <%= image_tag "ak.jpeg", {height: 140} %>
-
+	  	<%= image_tag current_user.profilepic, {height: 168} if @current_user.profilepic.attached? %>
+	   	<%#= image_tag "ak.jpeg", {height: 140} %>      
+     	<%#=  image_tag(current_user.profilepic) %><br>
 	  </div>
 	  <div class="leftpane">
-		  <strong><%= current_user.name.capitalize() %></strong><br>
+		  <strong><%= current_user.name.capitalize() %></strong><br> 
 			<%= current_user.email %><br>
 			<%= current_user.mobile_no %><br>
 			<%= current_user.address %><br>
+		   <%= link_to 'Edit', edit_user_registration_path, class:"btn btn-warning" %><br>
 	  </div>
 	  <div class="leftpane">
 		  <%= link_to 'index post', posts_path, class:"btn btn-primary" %><br>
@@ -17,6 +19,7 @@
 	    <%= link_to 'Friend request', see_friend_request_path, class:"btn btn-primary" %>
 	    <%= link_to 'My Friend', friend_path, class:"btn btn-primary" %><br>
 	  </div>
+	  <div class="mypost"><h1 style="color:Tomato;"><center>My Post </center></h1> </div>
       <div class="bottompane">
 			<div class="row">
 			 <%@posts.each do |post| %>
@@ -57,7 +60,7 @@
 			  </div>
        <% end %>
 			</div>
-      </div> 
+     </div> 
 </body>
 
 

@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index 
-    
     friends = Friendship.where(sender_id: current_user.id, confirmation: true)
     accepted_friends = Friendship.where(receiver_id: current_user.id, confirmation: true)
     @total_friends = (friends + accepted_friends).uniq
@@ -30,11 +29,21 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
+    if @post.save!
       redirect_to @post
     else
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end   
+    # respond_to do |format|
+    #   if @post.save!
+    #     format.html { redirect_to @post, notice: "Post was successfully created." }
+    #     format.json { render :show, status: :created, location: @post }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @post.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
   end
 
   def show

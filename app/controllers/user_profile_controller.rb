@@ -1,6 +1,6 @@
 class UserProfileController < ApplicationController
   def index
-    @user_profiles = UserProfile.paginate(:page => params[:page], :per_page => 5)
+    #@user_profiles = UserProfile.paginate(:page => params[:page], :per_page => 5)
   end
 
   def new 
@@ -16,29 +16,20 @@ class UserProfileController < ApplicationController
     @comment = Comment.find(params[:id])  
   end
 
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
-    @friends = Friendship.find(params[:id])
-    @friends.destroy
-    redirect_to "add_new_friend"
-    
   end  
 
   def another_user
     @user = User.find_by(id: params['id'])
-  end
-
-  def add_new_friend
-
-  end
-
-  def see_friend_request
-    @friends = Friendship.where(receiver_id: current_user.id, confirmation: false)
-  end
-
-  def friend
-    friends = Friendship.where(sender_id: current_user.id, confirmation: true)
-    accepted_friends = Friendship.where(receiver_id: current_user.id, confirmation: true)
-    @totle_friends = (friends + accepted_friends).uniq
   end
 
   private

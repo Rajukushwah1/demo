@@ -12,8 +12,9 @@
 				    <div style="margin-bottom: 10px;">
 				    	<%= form_with model: Comment.new do |form| %>
 				        <%= hidden_field_tag :post_id, post.id %>
-				        <%= form.text_field :body, placeholder: "Comment", style: "width: 197px; display: inline" %>
+				        <%= form.text_field :body, placeholder: "Comment", style: "width: 100px; display: inline" %>
 				        <%= form.submit 'submit' %>
+				        <%= link_to 'See', post_path(post), class:"btn btn-primary" %>
 	            <% end %>
 				    </div>
 	          <div>
@@ -40,5 +41,6 @@
 				</div>
 			<% end %>	
 		<% end %>
-	</div>       
+	</div>  
+
 </div> 

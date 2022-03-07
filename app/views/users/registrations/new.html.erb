@@ -3,46 +3,46 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="field from-group">
+    <% f.label :email %><br />
+    <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email", placeholder: "Email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  <div class="field from-group">
+    <% f.label :name %><br />
+    <%= f.text_field :name, class:"form-control", autofocus: true, autocomplete: "name", placeholder: "Name" %>
   </div>
 
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  <div class="field from-group">
+    <% f.label :address %><br />
+    <%= f.text_field :address, class:"form-control", autofocus: true, autocomplete: "address", placeholder: "Address" %>
   </div>
 
-  <div class="field">
-    <%= f.label :mobile_no %><br />
-    <%= f.text_field :mobile_no, autofocus: true, autocomplete: "mobile_no" %>
+  <div class="field from-group">
+    <% f.label :mobile_no %><br />
+    <%= f.text_field :mobile_no, class:"form-control",  autofocus: true, autocomplete: "mobile_no", placeholder: "mobile_no" %>
   </div>  
 
-  <!-- <div class="field">
-    <%= f.label :profilepic %><br />
-    <%= f.text_field :profilepic, autofocus: true, autocomplete: "profilepic" %>
-  </div>
- -->
-  <div class="field">
+   <div class="field from-group">
+    <% f.label :profilepic %><br />
+    <%= f.file_field :profilepic, class:"form-control", autofocus: true, autocomplete: "profilepic", placeholder: "profilepic"  %>
+  </div> 
+ 
+  <div class="field from-group">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, class:"form-control", autocomplete: "new-password", placeholder: "password" %>
   </div>
 
-  <div class="field">
+  <div class="field from-group">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password", placeholder: "password_confirmation" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class:"btn btn-secondary" %>
   </div>
 <% end %>
 
