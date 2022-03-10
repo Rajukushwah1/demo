@@ -10,3 +10,66 @@ friends = Friendship.where(sender_id: current_user.id, confirmation: true)
       @friends_ids.push(friend.receiver_id) 
      end    
     end 
+
+     #byebug
+    #@total_friends.to_a
+    #total = @total_friends.map { |f| f.id }
+
+
+
+    <%= form_with(model: @post)do |form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  def index 
+    friends = Friendship.where(sender_id: current_user.id, confirmation: true)
+    accepted_friends = Friendship.where(receiver_id: current_user.id, confirmation: true)
+    @total_friends = (friends + accepted_friends).uniq
+    
+    @friends_ids = []
+    @friends_ids << current_user.id
+    @total_friends.each do |friend|
+     if friend.receiver_id == current_user.id
+      @friends_ids.push(friend.sender_id)
+     else
+      @friends_ids.push(friend.receiver_id) 
+     end 
+    end 
+
+    #@total_friends.to_a
+    #total = @total_friends.map { |f| f.id }
+    
+    @posts = Post.where(user_id: @friends_ids).order("updated_at desc")
+  end
+
+
+
+  =============
+   # @friends_ids = []
+    # @friends_ids << current_user.id
+    # @total_friends.each do |friend|
+    #  if friend.receiver_id == current_user.id
+    #   @friends_ids.push(friend.sender_id)
+    #  else
+    #   @friends_ids.push(friend.receiver_id) 
+    #  end 
+    # end 
+   # byebug
+
+    #@total_friends.to_a
+    #byebug
+    #t = @total_friends.map { |f| f.id }
+ 
+    #t.to_i
+    #r = t.map { |e| e.id }
+    #t.user_id
+    #@post = Post.all

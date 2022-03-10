@@ -8,12 +8,13 @@ class FriendshipesController < ApplicationController
   end
 
   def create
-    @friendship = Friendship.new
+     @friendship = Friendship.new
+    # @friendship = Friendship.new(friendship_params)
     @friendship.sender_id = params[:sender_id]
     @friendship.receiver_id = params[:receiver_id]
     @friendship.confirmation = params[:confirmation]
     if @friendship.save
-     redirect_to see_friend_request_path
+     redirect_to add_new_friend_path
     else
      render :new
     end
@@ -31,7 +32,7 @@ class FriendshipesController < ApplicationController
   def update
    @friendship = Friendship.find_by(id: params[:id])
    if @friendship.update
-     @friendship.save
+     @friendship.save #?????????????
      redirect_to @friendship
    else
     render 'index'
@@ -39,7 +40,7 @@ class FriendshipesController < ApplicationController
   end
 
   def destroy
-    @friendship = Friendship.find_by(id: params[:id])
+    @friendship = Friendship.find(params[:id])
     @friendship.destroy
     redirect_to add_new_friend_path
   end 
@@ -58,5 +59,9 @@ class FriendshipesController < ApplicationController
     @totle_friends = (friends + accepted_friends).uniq
   end
 
+  # private
+  # def friendship_params
+  #   params.require(:friendship).permit(:sender_id, :receiver_id, :confirmation)
+  # end  
 end
 

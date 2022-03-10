@@ -1,11 +1,15 @@
 <div>
-  <%= link_to '+ post', new_post_path, class:"btn btn-primary" %><br><br>   
+  <%= link_to '+post', new_post_path, class:"btn btn-primary" %><br><br>   
   <div class="row">
 	  <% @posts.each do |post| %>
-		  <% if @friends_ids.include? post.user_id %>
+	
 		    <div class="card col-md-3" style="height: 400px; background-color: #b3d9ff;">
-		    	<h5 class="card-title"><%= link_to post.user.name, user_profile_path(post.user) %></h5>
-			     <%= image_tag post&.image, class:"card-img-top", style: "height: 200px"%>
+		    	<!-- <h5 class="card-title"><%= link_to post.user.name, user_profile_path(post.user) %></h5> -->
+		    	<h5 class="card-title"><%= post.user.name %></h5>
+
+		    	<% if post.image.attached? %>
+			     <%= image_tag post&.image, class:"card-img-top", style: "height: 174px" %>
+			    <%end%>
 				  <div class="card-body">
 				    <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
 				    <p class="card-text"><%= post.description %></p>
@@ -32,14 +36,16 @@
 						    <% end %>
 	          	</div>
 	          	
-					   <!--  <div style="float: right;">
-					    	<%= link_to 'Edit', edit_post_path(post), class:"btn btn-primary" %>
-			      		<%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
-			      	</div> -->
+					    <div style="float: right;">
+					    	<% if post.user == current_user %>
+						    	<%= link_to 'Edit', edit_post_path(post), class:"btn btn-warning" %>
+				      		<%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+
+				      	<% end %>
+			      	</div> 
 			      </div>
 				  </div>
 				</div>
-			<% end %>	
 		<% end %>
 	</div>  
 

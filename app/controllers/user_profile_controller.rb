@@ -1,14 +1,11 @@
 class UserProfileController < ApplicationController
   def index
-    #@user_profiles = UserProfile.paginate(:page => params[:page], :per_page => 5)
   end
 
-  def new 
-    
+  def new    
   end
 
-  def show
-    
+  def show    
     @posts = Post.where(user_id:current_user.id)
   end
 

@@ -1,3 +1,2 @@
-class Friendship < ApplicationRecord
-	#belongs_to :users
+class Friendship < ApplicationRecord	
 end

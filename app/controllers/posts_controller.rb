@@ -1,27 +1,14 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
 
   def index 
-    friends = Friendship.where(sender_id: current_user.id, confirmation: true)
-    accepted_friends = Friendship.where(receiver_id: current_user.id, confirmation: true)
-    @total_friends = (friends + accepted_friends).uniq
-    @friends_ids = []
-    @total_friends.each do |friend|
-     if friend.receiver_id == current_user.id
-      @friends_ids.push(friend.sender_id)
-     else
-      @friends_ids.push(friend.receiver_id) 
-     end    
-    end 
-    @posts = Post.order("updated_at desc")
+    friends_ids = Friendship.where(sender_id: current_user.id, confirmation: true)&.map(&:receiver_id)
+    accepted_friends_ids = Friendship.where(receiver_id: current_user.id, confirmation: true)&.map(&:sender_id)
+    @total_friends_ids = (friends_ids + accepted_friends_ids).uniq
+    @total_friends_ids << current_user.id
+    @posts = Post.where(user_id: @total_friends_ids).order("updated_at desc")
   end
-
-  def me
-    @posts = current_user.posts
-    render :index
-  end
-
+     
   def new
     @post = Post.new
   end
@@ -29,21 +16,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     @post.user_id = current_user.id
-    if @post.save!
+    if @post.save
       redirect_to @post
     else
       render 'new', status: :unprocessable_entity
     end   
-    # respond_to do |format|
-    #   if @post.save!
-    #     format.html { redirect_to @post, notice: "Post was successfully created." }
-    #     format.json { render :show, status: :created, location: @post }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @post.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
   end
 
   def show
@@ -74,6 +51,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :description, :image, :image )
+    params.require(:post).permit(:title, :description, :image )
   end
 end

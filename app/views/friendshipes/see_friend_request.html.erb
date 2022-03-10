@@ -1,4 +1,4 @@
-<h1>Requests <%= link_to 'Back', user_profile_path(current_user), class:"btn btn-primary" %></h1>
+<h1>Requests <%= link_to 'Back', user_profile_path(current_user), class:"btn btn-info" %></h1>
 <% @friends.each do |friend| %>
   <% user = User.find(friend.sender_id) %>
   <div class="mb-3 row">

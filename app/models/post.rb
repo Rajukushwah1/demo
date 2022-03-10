@@ -3,28 +3,7 @@ class Post < ApplicationRecord
 	belongs_to :user
 	has_many :likes, dependent: :destroy
 	has_one_attached :image 
-	     
-	#validates_presence_of :title
-     validates :title, presence: { message: "Can't be blank" }
-
-	#validates :title, presence: true, length: { maximum: 20 }
-    validates :description, presence: true 
-    validates :image, presence: true
-    validate :image_type
-    #has_many :friendshipes
-
-	private
-	def image_type
-	   if image.attached? == false
-	     errors.add(:image, "is missing!")
-	   end
-	   if !image.content_type.in?(%('image/jpeg image/png'))
-	     errors.add(:image, "needs to be a jpeg or png!")
-	   end
-	end
-
-	
-
-	  
-
+	validates :title, presence: true, length: { maximum: 20 }
+  validates :description, presence: true 
+  validates :image, presence: true
 end

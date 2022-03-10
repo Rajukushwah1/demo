@@ -54,8 +54,7 @@ class CommentsController < ApplicationController
         else
           @comment.destroy
           redirect_to post_path(@post)
-        end
-      
+        end  
     end
 
     private

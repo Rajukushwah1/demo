@@ -1,28 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">Social media app</a>
+      <a class="navbar-brand" href="/">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
 
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link'%>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Profile', user_profile_path(current_user), class: 'nav-link'%>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to 'Register', new_user_registration_path, class: 'nav-link'%>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Sign in', new_user_session_path, class: 'nav-link'%>
-          </li>
-        <% end %>
-      </ul>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class:'navbar-brand' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Profile', user_profile_path(current_user), class:'navbar-brand'%>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Register', new_user_registration_path, class:'navbar-brand'%>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sign in', new_user_session_path, class:'navbar-brand'%>
+            </li>
+          <% end %>
+
+        </ul>
+      </div>   
     </div>
-  </div>
+  </nav>
 </nav>

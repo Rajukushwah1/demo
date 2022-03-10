@@ -21,12 +21,5 @@ class User < ApplicationRecord
     has_many :posts  
     has_many :comments
     has_many :likes
-    #has_many :friendshipes
-    # has_many :friends, :through => :friendshipes 
     has_one_attached :profilepic 
-
-    def my_friend
-      Post.where(user_id: @total_friend)
-    end
-             
 end

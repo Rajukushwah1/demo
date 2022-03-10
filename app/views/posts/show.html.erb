@@ -4,7 +4,7 @@
       <div>
        <%= link_to 'Index post', posts_path, class:"btn btn-primary" %>
        <%= link_to 'New post', new_post_path, class:"btn btn-primary" %>
-       <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
+       <%= link_to 'Back', posts_path, class:"btn btn-info" %>
       </div>
     </div>
 
@@ -22,26 +22,28 @@
       <div class="leftpane">
         <div class="card" style="width: 34rem;">
           <h5 class="card-title"><%= @post.user.name %></h5>
-          <%= image_tag @post.image%>
+          <% if @post.image.attached? %>
+           <%= image_tag @post.image %>
+          <% end %>
           <div class="card-body">
             <h5 class="card-title"></h5>
             <p class="card-text"><%= @post.description%></p>
           </div>
           <div>
-        <%= form_with model: Comment.new do |form| %>      
-    <ul>
-      <li>
-        <span>
-        <%= hidden_field_tag :post_id, @post.id %>
-        <%= form.text_field :body , placeholder: "Enter your Comment"%>
-      </span>
-      <span>
-        <%= form.submit 'submit', class: "btn btn-success" %><br><br>
-      </span>
-      </li>
-    </ul>
-        <% end %>
-       </div> 
+            <%= form_with model: Comment.new do |form| %>      
+              <ul>
+                <li>
+                  <span>
+                  <%= hidden_field_tag :post_id, @post.id %>
+                  <%= form.text_field :body , placeholder: "Enter your Comment"%>
+                </span>
+                <span>
+                  <%= form.submit 'submit', class: "btn btn-success" %><br><br>
+                </span>
+                </li>
+              </ul>
+            <% end %>
+          </div> 
         </div>
       </div> 
     </div> 
@@ -55,7 +57,6 @@
             <tr>
               <th>Name</th>
               <th>Comment</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -64,10 +65,13 @@
                 <td><%= c.user.name %></td>
                 <td><%= c.body%></td>
                 <td>
-                  <%= link_to 'Edit', edit_comment_path(c) %> ||
-                  <%= link_to 'Destroy', comment_path(c),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' } %>
+
+                 <% if c.user == current_user %>
+                    <%= link_to 'Edit', edit_comment_path(c),class:"btn btn-warning" %> 
+                    <%= link_to 'Destroy', comment_path(c),
+                              method: :delete,
+                            data: { confirm: 'Are you sure?' },class:"btn btn-danger" %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

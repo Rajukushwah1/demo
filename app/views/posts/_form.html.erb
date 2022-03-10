@@ -1,24 +1,29 @@
 <h2 style="color:Tomato;"> New Post </h2>
-<%= form_with(model: @post)do |form| %>
+<%= form_for @post do |form| %>
   <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this book from being saved:</h2>
-
+      <h2>Errors:</h2>
       <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>   
   <% end %>
  
-  <h3><%= form.label :title %>
-  <%= form.text_field :title %><br></h3>
-  <h3><%= form.label :image %>
-  <%= form.file_field :image %><br></h3>
-  <td><%image_tag @post.image if @post.image.attached? %></td>
-  <span><h3><%= form.label :description %></h3></span>
-  <span><%= form.text_area :description,size: "60x10" %></span>
+  <div class="field from-group">
+    <u><%= form.label :title %></u><br><br>
+    <%= form.text_field :title, class:"form-control" %><br><br>
+  </div>
+
+  <div class="field from-group">
+    <u><%= form.label :image %></u><br><br>
+    <%= form.file_field :image, class:"form-control" %><br><br>
+    <td><%image_tag @post.image if @post.image.attached? %></td>
+  </div>
+
+   <div class="field from-group">
+    <u> <%= form.label :description %></u><br><br>
+    <%= form.text_area :description,size: "60x10", class:"form-control" %><br><br>
+  </div>
   <%= form.submit 'submit', class:"btn btn-primary" %>
-  <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
+  <%= link_to 'Back', posts_path, class:"btn btn-info" %>
 <% end %>
