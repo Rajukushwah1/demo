@@ -10,19 +10,19 @@
   <% end %>
  
   <div class="field from-group">
-    <u><%= form.label :title %></u><br><br>
-    <%= form.text_field :title, class:"form-control" %><br><br>
-  </div>
+    <u><%= form.label :title %></u>
+    <%= form.text_field :title, class:"form-control" %>
+  </div><br>
 
   <div class="field from-group">
-    <u><%= form.label :image %></u><br><br>
-    <%= form.file_field :image, class:"form-control" %><br><br>
+    <u><%= form.label :image %></u>
+    <%= form.file_field :image, class:"form-control" %>
     <td><%image_tag @post.image if @post.image.attached? %></td>
-  </div>
+  </div><br>
 
    <div class="field from-group">
-    <u> <%= form.label :description %></u><br><br>
-    <%= form.text_area :description,size: "60x10", class:"form-control" %><br><br>
+    <u> <%= form.label :description %></u>
+    <%= form.text_area :description,size: "60x10", class:"form-control" %>
   </div>
   <%= form.submit 'submit', class:"btn btn-primary" %>
   <%= link_to 'Back', posts_path, class:"btn btn-info" %>

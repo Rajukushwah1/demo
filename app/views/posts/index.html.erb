@@ -1,5 +1,6 @@
 <div>
-  <%= link_to '+post', new_post_path, class:"btn btn-primary" %><br><br>   
+  <%= link_to '+post', new_post_path, class:"btn btn-primary" %>
+  <%= link_to 'Send Notification', home_path, remote: true, class:"btn btn-primary" %>  
   <div class="row">
 	  <% @posts.each do |post| %>
 	

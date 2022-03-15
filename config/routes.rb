@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  post 'messages', to: 'messages#create'
+ 
   devise_for :users, :controllers => {:registrations => "users/registrations"}
   
   root to: "posts#index"
 
   get "/home", to: "home#index"
-
+  
   resources :posts
   
   resources :comments
@@ -22,4 +24,7 @@ Rails.application.routes.draw do
   get '/friend', to: "friendshipes#friend"
  
   get '/see_friend_request', to: "friendshipes#see_friend_request"
+
+  get '/chat', to: "pages#chat"
+ 
 end

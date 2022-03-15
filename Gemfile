@@ -1,4 +1,3 @@
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -69,3 +68,12 @@ gem "image_processing", ">= 1.2"
 
 #gem 'bootstrap_form'
 gem "will_paginate",">= 3.0"
+
+# webpacker
+gem "webpacker"
+ 
+gem 'bootstrap'
+gem 'popper_js'
+gem 'simple_form' 
+gem 'jquery-rails'
+gem 'tether-rails'

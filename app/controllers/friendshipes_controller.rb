@@ -46,7 +46,7 @@ class FriendshipesController < ApplicationController
   end 
 
   def add_new_friend
-    @friends = Friendship.all
+    #@friends = Friendship.all
   end
 
   def see_friend_request

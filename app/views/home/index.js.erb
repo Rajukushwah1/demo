@@ -1,0 +1,6 @@
+if (Notification.permission === 'granted') {
+  var title = 'Push Notification'
+  var body = 'Post is created.'
+  var options = { body: body }
+  new Notification(title, options)
+}

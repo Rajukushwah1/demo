@@ -1,22 +1,20 @@
 <h1>Comments show</h1>
- <%= form_with model: @comment do |form| %>
-
-  <%= form_for @comment do |form| %>
-    <% if @comment.errors.any? %>
-        <h2>Errors:</h2>
-        <ul>
-          <% @comment.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>   
-    <% end %> 
-    <ul>
-      <li>
-       <%= hidden_field_tag :post_id, @comment.id %>
-       <%= form.label :Commentshow  %><br><br>
-       <%= form.text_field :body %><br><br>
-       <%= form.submit %><br><br>
-      </li>
-    </ul>
- <% end %>
- <%= link_to 'Back', comments_path %>
+<%= form_for @comment do |form| %>
+  <% if @comment.errors.any? %>
+      <h2>Errors:</h2>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>   
+  <% end %> 
+  <ul>
+    <li>
+     <%= hidden_field_tag :post_id, @comment.id %>
+     <%= form.label :Commentshow  %><br><br>
+     <%= form.text_field :body %><br><br>
+     <%= form.submit %><br><br>
+    </li>
+  </ul>
+<% end %>
+<%= link_to 'Back', comments_path %>
