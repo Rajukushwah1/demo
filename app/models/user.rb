@@ -1,10 +1,11 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+    scope :all_except, ->(user) {where.not(id:user)} 
 
     validates :email,
       presence: true,
-      length: { maximum: 25 },
+      length: { maximum: 50 },
       format: { with: URI::MailTo::EMAIL_REGEXP },
       uniqueness: true
     
@@ -22,4 +23,7 @@ class User < ApplicationRecord
     has_many :comments
     has_many :likes
     has_one_attached :profilepic 
+
+    after_create_commit { broadcast_append_to "users" } 
+    has_many :msgs
 end

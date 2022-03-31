@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/show'
   post 'messages', to: 'messages#create'
  
   devise_for :users, :controllers => {:registrations => "users/registrations"}
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   get "/home", to: "home#index"
   
   resources :posts
+  get "/show_notification", to: "posts#show_notification"
   
   resources :comments
 
@@ -26,5 +28,12 @@ Rails.application.routes.draw do
   get '/see_friend_request', to: "friendshipes#see_friend_request"
 
   get '/chat', to: "pages#chat"
+
+
+  resources :rooms do
+    resources :msgs
+  end
+
+  get 'user/:id', to: 'users#show', as: 'user'
  
 end

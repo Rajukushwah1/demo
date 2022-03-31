@@ -6,4 +6,6 @@ class Post < ApplicationRecord
 	validates :title, presence: true, length: { maximum: 20 }
   validates :description, presence: true 
   validates :image, presence: true
+  scope :recent_first, -> {order(created_at: :desc)}
+  
 end

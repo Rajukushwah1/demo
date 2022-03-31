@@ -1,0 +1,53 @@
+ <div>
+  <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
+  <%= link_to 'Send Notification', home_path, remote: true, class:"btn btn-primary" %>  
+  <div class="row">
+    <% @posts.each do |post| %>
+  
+        <div class="card col-md-3" style="height: 400px; background-color: #b3d9ff;">
+          <!-- <h5 class="card-title"><%= link_to post.user.name, user_profile_path(post.user) %></h5> -->
+          <h5 class="card-title"><%= post.user.name %></h5>
+
+          <% if post.image.attached? %>
+           <%= image_tag post&.image, class:"card-img-top", style: "height: 174px" %>
+          <%end%>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
+            <p class="card-text"><%= post.description %></p>
+            <div style="margin-bottom: 10px;">
+              <%= form_with model: Comment.new do |form| %>
+                <%= hidden_field_tag :post_id, post.id %>
+                <%= form.text_field :body, placeholder: "Comment", style: "width: 100px; display: inline" %>
+                <%= form.submit 'submit' %>
+                <%= link_to 'See', post_path(post), class:"btn btn-primary" %>
+              <% end %>
+            </div>
+            <div>
+              <div style="float: left;">
+                <%= post.likes.count %> 
+                <% like = current_user.likes.find_by(post: post) %> 
+                <% if like.nil? %>
+                    <%=  link_to likes_path({ like: { post_id: post.id } }), method: :post do %>
+                      <%= image_tag "like-inactive.png", style: "height: 40px;" %>
+                    <% end %>
+                <% else %>
+                    <%=  link_to  like_path(like), method: :delete do %>
+                    <%= image_tag "like-active.png", style: "height: 40px;" %>
+                    <% end %>
+                <% end %>
+              </div>
+              
+              <div style="float: right;">
+                <% if post.user == current_user %>
+                  <%= link_to 'Edit', edit_post_path(post), class:"btn btn-warning" %>
+                  <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+
+                <% end %>
+              </div> 
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>  
+
+</div> 

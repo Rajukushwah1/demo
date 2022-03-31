@@ -38,3 +38,56 @@
     border: 2px solid #b3d9ff;
     padding: 8px;
 }
+
+
+body{
+    
+}
+
+.msg-form{
+    width: 150%;
+    height: 56px;
+    padding: 10px;
+}
+
+#single_room {
+   
+    
+}
+
+#messages {
+    height: calc(100vh - 250px);
+     width: 149%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#room_container {
+    height: 80vh;
+    margin-right: 0px !important;
+}
+
+
+#chatroom_container {
+    height: 435vh;
+    margin-right: 0px !important;
+
+}
+
+.msg-content {
+    width: 90%;
+    margin-right: 5px;
+}
+
+.message-box {
+    word-wrap: break-word;
+    width: fit-content;
+    max-width: 40%;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #555555;
+    padding: 10px;
+}
+
+

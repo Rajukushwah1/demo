@@ -1,0 +1,17 @@
+<div class="cont-<%=@messages%>">
+	 <div class="message-box msg-<%= @messages %>">
+			<% unless msg.room.is_private %>
+		    <h6 class="name"> <%= msg.user.email %> </h6>
+			<% end %>
+			<%= msg.body %>
+   </div>
+</div> 
+
+<!-- <div class="cont-<%#=@messages.user.id%>">
+	 <div class="message-box msg-<%#= @messages.user.id %>">
+			<#% unless msg.room.is_private %>
+		    <h6 class="name"> <%#= msg.user.email %> </h6>
+			<#% end %>
+			<%#= msg.body %>
+   </div>
+</div> -->

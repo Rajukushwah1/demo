@@ -2,25 +2,37 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="">Social media app</a>
-      <a class="navbar-brand" href="/">Home</a>
+     
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-
           <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class:'navbar-brand' %>
-            </li>
+           <li class="nav-item">
+            <a class="navbar-brand" href="/">Home</a>
+           </li>
 
             <li class="nav-item">
               <%= link_to 'Profile', user_profile_path(current_user), class:'navbar-brand'%>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'Chat', chat_path, class:'navbar-brand'%>
+              <%= link_to 'Group Chats', chat_path, class:'navbar-brand'%>
             </li> 
+
+            <li class="nav-item">
+              <%= link_to 'Start Chatting', rooms_path, class:'navbar-brand'%>
+            </li> 
+
+            <li class="nav-item">
+              <%= link_to "Notification", href="/show_notification", class:'navbar-brand'%>
+            </li> 
+
+
+            <li class="nav-item">
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class:'navbar-brand' %>
+            </li>
           <% else %>
             <li class="nav-item">
               <%= link_to 'Register', new_user_registration_path, class:'navbar-brand'%>

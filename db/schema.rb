@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_11_112136) do
+ActiveRecord::Schema.define(version: 2022_03_23_060517) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,25 @@ ActiveRecord::Schema.define(version: 2022_03_11_112136) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "msgs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_msgs_on_room_id"
+    t.index ["user_id"], name: "index_msgs_on_user_id"
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_participants_on_room_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "image"
@@ -79,6 +98,13 @@ ActiveRecord::Schema.define(version: 2022_03_11_112136) do
     t.integer "friend_ship_id"
     t.index ["friend_ship_id"], name: "index_posts_on_friend_ship_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_private", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
